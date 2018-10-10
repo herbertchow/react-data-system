@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import { Button, Layout } from 'element-react';
+import echarts from 'echarts';
 
 import 'element-theme-default';
 import './App.css';
 
 class App extends Component {
+  constructor(){
+    super()
+    console.log(echarts)
+  }
+
   render() {
     return (
       <div className="App">
