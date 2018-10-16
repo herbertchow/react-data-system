@@ -16,7 +16,7 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <div>
-                <Route path="/" component={App} />
+                <Route exact path="/" component={App} />
                 <Route path="/haha" component={App2} />
             </div>
         </BrowserRouter>
