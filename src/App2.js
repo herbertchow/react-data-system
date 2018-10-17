@@ -4,16 +4,18 @@ import * as actionCreators from "./redux/action-creators";
 
 // import ReactDOM from 'react-dom';
 import logo from "./logo.svg";
-import { Button, Layout } from "element-react";
+// import { Button, Layout } from "element-react";
 // import echarts from "echarts";
+import { Button } from 'antd';
 
-import "element-theme-default";
+// import "element-theme-default";
 import "./App.css";
 
 class App extends Component {
     constructor(props) {
         super(props);
         console.log(props);
+        console.log(Button);
     }
 
     onTimeButtonClick(delay) {
@@ -41,13 +43,14 @@ class App extends Component {
 
         return (
             <div className="App">
-                <Layout.Row>
+                {/* <Layout.Row>
                     <Layout.Col span="24">
                         <div className="grid-content bg-purple-dark">sda</div>
-                        <Button type="primary">Hello22222222</Button>
+                        <Button type="primary">Hello</Button>
                         <i className="el-icon-edit" />
                     </Layout.Col>
-                </Layout.Row>
+                </Layout.Row> */}
+                <Button type="primary">Hello</Button>
 
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
