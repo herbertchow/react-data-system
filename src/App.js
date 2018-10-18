@@ -53,7 +53,7 @@ class App extends Component {
                         <i className="el-icon-edit" />
                     </Layout.Col>
                 </Layout.Row> */}
-                <Hbheader></Hbheader>
+                <Hbheader ></Hbheader>
                 <Button type="primary">Hello</Button>
 
                 <header className="App-header">

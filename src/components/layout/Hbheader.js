@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Layout, Menu } from "antd";
 
-const { Header } = Layout;
+const { Header, Sider } = Layout;
+// {/* <style>.haha{color:red;}</style> */}
 
 class Hbheader extends Component {
     render() {
@@ -12,12 +13,12 @@ class Hbheader extends Component {
         ];
         return (
             <Layout>
-                <Header>
+                <Header style={{ height: "40px", backgroundColor: '#fff' }}>
                     <Menu
-                        theme="dark"
+                        theme="light"
                         mode="horizontal"
                         defaultSelectedKeys={["2"]}
-                        style={{ lineHeight: "64px" }}
+                        style={{ lineHeight: "40px", height: "40px" }}
                     >
                         {options.map(item => {
                             return (
@@ -25,6 +26,10 @@ class Hbheader extends Component {
                             );
                         })}
                     </Menu>
+                    <Layout style={{float:"right"}}>
+                        <Sider>Sider</Sider>
+                    </Layout>
+
                 </Header>
             </Layout>
         );
