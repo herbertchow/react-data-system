@@ -8,6 +8,8 @@ import logo from "./logo.svg";
 // import echarts from "echarts";
 import { Button } from 'antd';
 
+import Hbheader from "./components/layout/Hbheader";
+
 
 // import "element-theme-default";
 import "./App.css";
@@ -51,6 +53,7 @@ class App extends Component {
                         <i className="el-icon-edit" />
                     </Layout.Col>
                 </Layout.Row> */}
+                <Hbheader></Hbheader>
                 <Button type="primary">Hello</Button>
 
                 <header className="App-header">
