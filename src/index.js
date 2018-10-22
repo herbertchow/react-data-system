@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import createStore from "./redux/create-store";
 import { Provider } from "react-redux";
 import "./normalize.css";
@@ -14,12 +14,12 @@ const store = createStore();
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <Router>
             <div>
                 <Route exact path="/" component={App} />
                 <Route path="/haha" component={App2} />
             </div>
-        </BrowserRouter>
+        </Router>
     </Provider>,
     document.getElementById("root")
 );

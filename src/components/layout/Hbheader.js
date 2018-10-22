@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Layout, Menu } from "antd";
 
+import './Hbheader.less'
+
 const { Header, Sider } = Layout;
 // {/* <style>.haha{color:red;}</style> */}
 
@@ -12,9 +14,10 @@ class Hbheader extends Component {
             { label: "Orange", value: "Orange" }
         ];
         return (
-            <Layout>
-                <Header style={{ height: "40px", backgroundColor: '#fff' }}>
-                    <Menu
+            <Layout className="hb-header">
+                <div class="logo"></div>
+                <div style={{"width":"500px;"}}>
+                    {/* <Menu
                         theme="light"
                         mode="horizontal"
                         defaultSelectedKeys={["2"]}
@@ -25,12 +28,13 @@ class Hbheader extends Component {
                                 <Menu.Item key={item.value}>{item.label}:{item.value}</Menu.Item>
                             );
                         })}
-                    </Menu>
-                    <Layout style={{float:"right"}}>
+                    </Menu> */}
+                </div>
+                <div>
+                    <Layout>
                         <Sider>Sider</Sider>
                     </Layout>
-
-                </Header>
+                </div>
             </Layout>
         );
     }
