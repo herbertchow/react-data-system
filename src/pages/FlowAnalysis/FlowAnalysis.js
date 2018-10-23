@@ -16,16 +16,14 @@ class FlowAnalysis extends Component {
         // https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options
         // 被传到 actionCreators.getTime 的 delay 值是为了在我们能得到当前时间之前模拟异步的工作,
         // 试着修改这个值来正确影响我们的 UI
-        this.props.dispatch(actionCreators.getTime(delay));
+        this.props.dispatch(actionCreators.fetchTableData());
     }
 
     render() {
         // 因为 Connect 我们能够通过 props 取到特定的数据
-        var { frozen, time, reduxState } = this.props;
+        var { frozen, resData, reduxState } = this.props;
         var attrs = {};
-        const DELAY = 500; // 毫秒
 
-        
 
         if (frozen) {
             attrs = {
@@ -36,15 +34,24 @@ class FlowAnalysis extends Component {
         return (
             <div className="flow-analysis">
                 流量分析
+                {resData&&resData.data[0].admin}
+                <br />
+                <button
+                    {...attrs}
+                    onClick={() => this.onTimeButtonClick()}
+                >
+                    Get time!
+                    </button>
             </div>
         );
     }
 }
 
-const mapStateToProps = (state /*, props*/) => {
+const mapStateToProps = (state , props) => {
+    console.log(1111,state,props);
     return {
-        frozen: state._time.frozen,
-        time: state._time.time,
+        frozen: state._fetchTableData.frozen,
+        resData: state._fetchTableData.resData,
         // 像 (reduxState: state) 这样提供整个 state 是一种不好的实现,
         // 我们在这里这样写是为了让大家能看到我们页面字符串化的结果。更多信息请访问以下链接:
         // https://github.com/reactjs/react-redux/blob/master/docs/api.md#inject-dispatch-and-every-field-in-the-global-state

@@ -22,19 +22,43 @@ import Promise from 'bluebird'
 // 下面的 action 使用 "delay" 作为一个参数传递，用来延迟该 action 创建函数。
 // 尝试改变延迟的值，验证它是否正确影响了我们 UI。
 export function getTime(delay) {
-  return {
-    types: ['GET_TIME_REQUEST', 'GET_TIME_SUCCESS', 'GET_TIME_FAILURE'],
-    promise: () => {
-      return new Promise((resolve, reject) => {
-        // 通过 setTimeout 来模拟一个异步服务器请求
-        setTimeout(() => {
-          const d = new Date()
-          const ms = ('000' + d.getMilliseconds()).slice(-3)
-          resolve({
-            time: `${d.toString().match(/\d{2}:\d{2}:\d{2}/)[0]}.${ms}`
-          })
-        }, delay)
-      })
-    }
-  }
+	return {
+		types: ['GET_TIME_REQUEST', 'GET_TIME_SUCCESS', 'GET_TIME_FAILURE'],
+		promise: () => {
+			return new Promise((resolve, reject) => {
+				// 通过 setTimeout 来模拟一个异步服务器请求
+				setTimeout(() => {
+					const d = new Date()
+					const ms = ('000' + d.getMilliseconds()).slice(-3)
+					resolve({
+						time: `${d.toString().match(/\d{2}:\d{2}:\d{2}/)[0]}.${ms}`
+					})
+				}, delay)
+			})
+		}
+	}
+}
+
+export function fetchTableData() {
+	return {
+		types: ['FETCH_TBDATA_REQUEST', 'FETCH_TBDATA_SUCCESS', 'FETCH_TBDATA_FAILURE'],
+		promise: () => {
+			return new Promise((resolve, reject) => {
+				// 通过 setTimeout 来模拟一个异步服务器请求
+				setTimeout(() => {
+					resolve({
+						data: [
+							{ title: 'haha', admin: 'xiaoming' },
+							{ title: 'haha', admin: 'xiaoming' },
+							{ title: 'haha', admin: 'xiaoming' },
+							{ title: 'haha', admin: 'xiaoming' },
+							{ title: 'haha', admin: 'xiaoming' }
+						],
+						code:200,
+						total:5,
+					})
+				}, 1200)
+			})
+		}
+	}
 }

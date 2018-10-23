@@ -32,3 +32,29 @@ export function _time(state = initialTimeState, action) {
       return state
   }
 }
+
+export function _fetchTableData(state = {}, action) {
+  console.log('_time reducer called with state ', state , ' and action ', action);
+
+  switch (action.type) {
+    case 'FETCH_TBDATA_REQUEST':
+      return {
+        ...state,
+        frozen: true
+      }
+    case 'FETCH_TBDATA_SUCCESS':
+      return {
+        ...state,
+        resData: action.result,
+        frozen: false
+      }
+    case 'FETCH_TBDATA_FAILURE':
+        // 这里我们可以添加一个错误消息，打印到我们应用程序的某个地方
+      return {
+        ...state,
+        frozen: false
+      }
+    default:
+      return state
+  }
+}

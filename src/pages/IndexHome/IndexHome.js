@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import {Button} from "antd";
 import * as actionCreators from "../../redux/action-creators";
 import "./IndexHome.css";
 
@@ -53,12 +54,12 @@ class IndexHome extends Component {
                     </i>
                     <br />
                     {/* 这里注册按钮的 "onClick" 句柄: */}
-                    <button
+                    <Button
                         {...attrs}
                         onClick={() => this.onTimeButtonClick(DELAY)}
                     >
                         Get time!
-                    </button>
+                    </Button>
                     <pre>
                         redux state = {JSON.stringify(reduxState, null, 2)}
                     </pre>

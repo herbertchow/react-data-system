@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import logo from "../../logo.svg";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Menu, Popover, Button, Icon } from "antd";
 
 import "./Hbheader.less";
@@ -24,13 +24,13 @@ class Hbheader extends Component {
                         mode="horizontal"
                         defaultSelectedKeys={["1"]}
                     >
-                        <Menu.Item>
+                        <Menu.Item key="1">
                             <Link to="/">首页</Link>
                         </Menu.Item>
-                        <Menu.Item>
+                        <Menu.Item key="2">
                             <Link to="/FlowAnalysis">流量</Link>
                         </Menu.Item>
-                        <Menu.Item>
+                        <Menu.Item key="3">
                             <Link to="/">报表</Link>
                         </Menu.Item>
                     </Menu>

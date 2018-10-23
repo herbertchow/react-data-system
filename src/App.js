@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "./redux/action-creators";
-import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import "./App.css";
 
 // import ReactDOM from 'react-dom';
@@ -13,7 +13,7 @@ import IndexHome from "./pages/IndexHome/IndexHome";
 import FlowAnalysis from "./pages/FlowAnalysis/FlowAnalysis";
 
 const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 // import "element-theme-default";
 
@@ -102,7 +102,7 @@ class App extends Component {
                         </Menu>
                     </Sider>
                     <Layout style={{ padding: "0 24px 24px" }}>
-                        <Breadcrumb style={{ margin: "16px 0" }}>
+                        <Breadcrumb style={{ margin: "16px 0",textAlign:"left" }}>
                             <Breadcrumb.Item>Home</Breadcrumb.Item>
                             <Breadcrumb.Item>List</Breadcrumb.Item>
                             <Breadcrumb.Item>App</Breadcrumb.Item>
