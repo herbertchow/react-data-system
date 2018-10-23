@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import * as actionCreators from "./redux/action-creators";
 
 // import ReactDOM from 'react-dom';
-import logo from "./logo.svg";
 // import { Button, Layout } from "element-react";
 // import echarts from "echarts";
 import { Button } from 'antd';
@@ -57,7 +56,7 @@ class App extends Component {
                 <Button type="primary">Hello</Button>
 
                 <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
+                    
                     <h1 className="App-title">Welcome to React</h1>
                 </header>
                 <p className="App-intro">

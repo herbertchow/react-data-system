@@ -1,13 +1,34 @@
-.hb-header{
+.hb-header {
     display: flex;
-    flex-direction:row;
-    .logo{
-        
+    justify-content: space-between;
+    background: #001529;
+    .hb-logo {
+        flex-basis: 150px;
     }
-    >div{
-        flex:1;
-        justify-content: flex-start ;
-        height: 10px;
-        background: red;
+    .hb-top-menu {
+        flex: 2;
+        ul {
+            text-align: left;
+        }
+    }
+    .hb-user-info {
+        flex-basis: 200px;
+    }
+    .hb-user-selectbtn {
+        width: 120px;
+        margin-top: 4px;
+    }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+        height: 40px;
+    }
+}
+.hb-user-select {
+    .ant-popover-inner-content {
+        width: 120px;
+        cursor: pointer;
+        &:hover{
+            color: #40a9ff;
+        }
     }
 }

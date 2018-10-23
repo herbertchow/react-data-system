@@ -1,41 +1,47 @@
 import React, { Component } from "react";
-import { Layout, Menu } from "antd";
+import logo from "../../logo.svg";
 
-import './Hbheader.less'
+import { Menu, Popover, Button, Icon } from "antd";
 
-const { Header, Sider } = Layout;
-// {/* <style>.haha{color:red;}</style> */}
+import "./Hbheader.less";
 
 class Hbheader extends Component {
     render() {
         const options = [
-            { label: "Apple", value: "Apple" },
-            { label: "Pear", value: "Pear" },
-            { label: "Orange", value: "Orange" }
+            { label: "首页", value: "首页" },
+            { label: "流量", value: "流量" },
+            { label: "报表", value: "报表" }
         ];
         return (
-            <Layout className="hb-header">
-                <div class="logo"></div>
-                <div style={{"width":"500px;"}}>
-                    {/* <Menu
-                        theme="light"
+            <div className="hb-header">
+                <div className="hb-logo">
+                    <img src={logo} className="App-logo" alt="logo" />
+                </div>
+                <div className="hb-top-menu">
+                    <Menu
+                        theme="dark"
                         mode="horizontal"
                         defaultSelectedKeys={["2"]}
                         style={{ lineHeight: "40px", height: "40px" }}
                     >
                         {options.map(item => {
                             return (
-                                <Menu.Item key={item.value}>{item.label}:{item.value}</Menu.Item>
+                                <Menu.Item key={item.value} value={item.value}>
+                                    {item.label}
+                                </Menu.Item>
                             );
                         })}
-                    </Menu> */}
+                    </Menu>
                 </div>
-                <div>
-                    <Layout>
-                        <Sider>Sider</Sider>
-                    </Layout>
+                <div className="hb-user-info">
+                    <Popover overlayClassName="hb-user-select" content={'退出登录'} trigger="click">
+                        <Button type="default" className="hb-user-selectbtn">
+                            <Icon type="user" theme="outlined"/>
+                            周逆天
+                        </Button>
+                    </Popover>
                 </div>
-            </Layout>
+            </div>
         );
     }
 }
