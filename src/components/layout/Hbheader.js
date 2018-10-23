@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import logo from "../../logo.svg";
-
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import { Menu, Popover, Button, Icon } from "antd";
 
 import "./Hbheader.less";
@@ -8,35 +8,41 @@ import "./Hbheader.less";
 class Hbheader extends Component {
     render() {
         const options = [
-            { label: "首页", value: "首页" },
-            { label: "流量", value: "流量" },
-            { label: "报表", value: "报表" }
+            { label: "首页", value: "1" },
+            { label: "流量", value: "2" },
+            { label: "报表", value: "3" }
         ];
         return (
             <div className="hb-header">
                 <div className="hb-logo">
                     <img src={logo} className="App-logo" alt="logo" />
                 </div>
-                <div className="hb-top-menu">
+                <div className="top-menu-wrap">
                     <Menu
+                        className="top-menu"
                         theme="dark"
                         mode="horizontal"
-                        defaultSelectedKeys={["2"]}
-                        style={{ lineHeight: "40px", height: "40px" }}
+                        defaultSelectedKeys={["1"]}
                     >
-                        {options.map(item => {
-                            return (
-                                <Menu.Item key={item.value} value={item.value}>
-                                    {item.label}
-                                </Menu.Item>
-                            );
-                        })}
+                        <Menu.Item>
+                            <Link to="/">首页</Link>
+                        </Menu.Item>
+                        <Menu.Item>
+                            <Link to="/FlowAnalysis">流量</Link>
+                        </Menu.Item>
+                        <Menu.Item>
+                            <Link to="/">报表</Link>
+                        </Menu.Item>
                     </Menu>
                 </div>
                 <div className="hb-user-info">
-                    <Popover overlayClassName="hb-user-select" content={'退出登录'} trigger="click">
+                    <Popover
+                        overlayClassName="hb-user-select"
+                        content={"退出登录"}
+                        trigger="click"
+                    >
                         <Button type="default" className="hb-user-selectbtn">
-                            <Icon type="user" theme="outlined"/>
+                            <Icon type="user" theme="outlined" />
                             周逆天
                         </Button>
                     </Popover>

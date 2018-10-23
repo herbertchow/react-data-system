@@ -9,12 +9,9 @@
   color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
-}
 
-.App-intro {
-  font-size: 1rem;
+.hb-main-layout{
+    min-height: 800px;
 }
 
 @keyframes App-logo-spin {
