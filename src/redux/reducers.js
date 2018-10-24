@@ -8,7 +8,7 @@ var initialTimeState = {}
 // 下面的 reducer 命名用"_"开头，用于从 state 中读取的时候，避免 state.time.time (出现两个 time )。
 // 这只是个人偏好你可以不必这样做，它取决于你如何对各个 reducer 命名，和在 Redux 的 store 中暴露哪些属性。
 export function _time(state = initialTimeState, action) {
-  console.log('_time reducer called with state ', state , ' and action ', action);
+  // console.log('_time reducer called with state ', state , ' and action ', action);
 
   switch (action.type) {
     case 'GET_TIME_REQUEST':
@@ -33,13 +33,14 @@ export function _time(state = initialTimeState, action) {
   }
 }
 
-export function _fetchTableData(state = {}, action) {
-  console.log('_time reducer called with state ', state , ' and action ', action);
+export function _fetchTableData(state = {resData:{data:[]}}, action) {
+  console.log('_fetchTableData ',9999, state,9999 );
 
   switch (action.type) {
     case 'FETCH_TBDATA_REQUEST':
       return {
         ...state,
+        resData:{data:[]},
         frozen: true
       }
     case 'FETCH_TBDATA_SUCCESS':

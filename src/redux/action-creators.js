@@ -49,15 +49,15 @@ export function fetchTableData() {
 					resolve({
 						data: [
 							{ title: 'haha', admin: 'xiaoming' },
-							{ title: 'haha', admin: 'xiaoming' },
-							{ title: 'haha', admin: 'xiaoming' },
-							{ title: 'haha', admin: 'xiaoming' },
-							{ title: 'haha', admin: 'xiaoming' }
+							{ title: 'haha2', admin: 'xiaoming2' },
+							{ title: 'haha3', admin: 'xiaoming3' },
+							{ title: 'haha4', admin: 'xiaoming4' },
+							{ title: 'haha5', admin: 'xiaoming5' }
 						],
 						code:200,
 						total:5,
 					})
-				}, 1200)
+				}, 2000)
 			})
 		}
 	}

@@ -6,9 +6,10 @@ import "./FlowAnalysis.css";
 class FlowAnalysis extends Component {
     constructor(props) {
         super(props);
+        this.onTimeButtonClick = this.onTimeButtonClick.bind(this);
     }
 
-    onTimeButtonClick(delay) {
+    onTimeButtonClick() {
         // 这个按钮处理器在用户的点击事件后会分发一个 action。
         // 我们在这里会使用一个 Connect 提供的分发函数,
         // 也有很多其他的调用被绑定到分发器的 actionCreator 的方式,
@@ -21,8 +22,11 @@ class FlowAnalysis extends Component {
 
     render() {
         // 因为 Connect 我们能够通过 props 取到特定的数据
-        var { frozen, resData, reduxState } = this.props;
-        var attrs = {};
+        let { frozen, resData, reduxState } = this.props;
+        let attrs = {};
+
+        console.log('重新渲染了组件：props',this.props, 9000);
+        // 
 
 
         if (frozen) {
@@ -34,11 +38,16 @@ class FlowAnalysis extends Component {
         return (
             <div className="flow-analysis">
                 流量分析
-                {resData&&resData.data[0].admin}
+                {'haha'}
+                {
+                    resData.data.map(item =>
+                        <div key={item.admin}>{item.admin}:{item.title}</div>)
+
+                }
                 <br />
                 <button
                     {...attrs}
-                    onClick={() => this.onTimeButtonClick()}
+                    onClick={this.onTimeButtonClick}
                 >
                     Get time!
                     </button>
@@ -47,8 +56,7 @@ class FlowAnalysis extends Component {
     }
 }
 
-const mapStateToProps = (state , props) => {
-    console.log(1111,state,props);
+const mapStateToProps = (state, props) => {
     return {
         frozen: state._fetchTableData.frozen,
         resData: state._fetchTableData.resData,
