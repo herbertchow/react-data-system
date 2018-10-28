@@ -11,6 +11,7 @@ import { Layout, Menu, Breadcrumb, Icon } from "antd";
 import Hbheader from "./components/layout/Hbheader";
 import IndexHome from "./pages/IndexHome/IndexHome";
 import FlowAnalysis from "./pages/FlowAnalysis/FlowAnalysis";
+import ReportSheet from './pages/ReportSheet/ReportSheet'
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
@@ -20,6 +21,7 @@ const { Content, Sider } = Layout;
 class App extends Component {
     constructor(props) {
         super(props);
+        console.log(props);
     }
 
     onTimeButtonClick(delay) {
@@ -35,15 +37,6 @@ class App extends Component {
 
     render() {
         // 因为 Connect 我们能够通过 props 取到特定的数据
-        var { frozen, time, reduxState } = this.props;
-        var attrs = {};
-        const DELAY = 500; // 毫秒
-
-        if (frozen) {
-            attrs = {
-                disabled: true
-            };
-        }
 
         return (
             <div className="App">
@@ -112,7 +105,8 @@ class App extends Component {
                                 background: "#fff",
                                 padding: 24,
                                 margin: 0,
-                                minHeight: 280
+                                minHeight: 280,
+                                position:"relative"
                             }}
                         >
                             <div>
@@ -120,6 +114,10 @@ class App extends Component {
                                 <Route
                                     path="/FlowAnalysis"
                                     component={FlowAnalysis}
+                                />
+                                <Route
+                                    path="/ReportSheet"
+                                    component={ReportSheet}
                                 />
                             </div>
                         </Content>

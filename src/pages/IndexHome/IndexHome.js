@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {Button} from "antd";
+import { Button } from "antd";
 import * as actionCreators from "../../redux/action-creators";
 import "./IndexHome.css";
 
 class IndexHome extends Component {
     constructor(props) {
         super(props);
+        console.log(props);
     }
 
     onTimeButtonClick(delay) {
@@ -26,7 +27,7 @@ class IndexHome extends Component {
         var attrs = {};
         const DELAY = 500; // 毫秒
 
-        
+
 
         if (frozen) {
             attrs = {

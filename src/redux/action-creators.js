@@ -48,16 +48,61 @@ export function fetchTableData() {
 				setTimeout(() => {
 					resolve({
 						data: [
-							{ title: 'haha', admin: 'xiaoming' },
-							{ title: 'haha2', admin: 'xiaoming2' },
-							{ title: 'haha3', admin: 'xiaoming3' },
-							{ title: 'haha4', admin: 'xiaoming4' },
-							{ title: 'haha5', admin: 'xiaoming5' }
+							{ sex: '男', admin: '小明', id: 1, dpm: '研发中心', add_time: '2018-10-27' },
+							{ sex: '女', admin: '小花', id: 2, dpm: '研发中心', add_time: '2018-10-27' },
+							{ sex: '女', admin: '小西', id: 3, dpm: '运营中心', add_time: '2018-10-27' },
+							{ sex: '男', admin: '小强', id: 4, dpm: '研发中心', add_time: '2018-10-27' },
+							{ sex: '男', admin: '小东', id: 5, dpm: '财务部', add_time: '2018-10-27' }
 						],
-						code:200,
-						total:5,
+						code: 200,
+						total: 100,
 					})
-				}, 2000)
+				}, 500)
+			})
+		}
+	}
+}
+
+export function fetchChartData() {
+	return {
+		types: ['FETCH_CHARTDATA_REQUEST', 'FETCH_CHARTDATA_SUCCESS', 'FETCH_CHARTDATA_FAILURE'],
+		promise: () => {
+			return new Promise((resolve, reject) => {
+				// 通过 setTimeout 来模拟一个异步服务器请求
+				setTimeout(() => {
+					resolve({
+						datas: [
+							{
+								name:'邮件营销',
+								type:'line',
+								data:[120, 132, 101, 134, 90, 230, 210]
+							},
+							{
+								name:'联盟广告',
+								type:'line',
+								data:[220, 182, 191, 234, 290, 330, 310]
+							},
+							{
+								name:'视频广告',
+								type:'line',
+								data:[150, 232, 201, 154, 190, 330, 410]
+							},
+							{
+								name:'直接访问',
+								type:'line',
+								data:[320, 332, 301, 334, 390, 330, 320]
+							},
+							{
+								name:'搜索引擎',
+								type:'line',
+								data:[820, 932, 901, 934, 1290, 1330, 1320]
+							}
+						],
+						title: '折线图事例',
+						categories: ['周一','周二','周三','周四','周五','周六','周日'],
+						code:200,
+					})
+				}, 500)
 			})
 		}
 	}

@@ -1,13 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Table } from 'antd';
 import * as actionCreators from "../../redux/action-creators";
-import "./FlowAnalysis.less";
+import chartOption from './chartOption';
+import echarts from 'echarts';
+import "./ReportSheet.less";
 
-class FlowAnalysis extends Component {
+class ReportSheet extends Component {
     constructor(props) {
         super(props);
         this.onTimeButtonClick = this.onTimeButtonClick.bind(this);
+        this.state = {showChart:false,mychart:null};
+    }
+
+    componentDidMount(){
+        this.setState({showChart : true});
+        const getEl = document.getElementById('chartDemo');
+        this.setState({mychart:echarts.init(getEl)});
     }
 
     onTimeButtonClick() {
@@ -18,43 +26,31 @@ class FlowAnalysis extends Component {
         // https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options
         // 被传到 actionCreators.getTime 的 delay 值是为了在我们能得到当前时间之前模拟异步的工作,
         // 试着修改这个值来正确影响我们的 UI
-        this.props.dispatch(actionCreators.fetchTableData());
+        this.props.dispatch(actionCreators.fetchChartData());
     }
 
     render() {
         // 因为 Connect 我们能够通过 props 取到特定的数据
-        let { frozen, resData } = this.props;
+        let { frozen, chartData } = this.props;
         let attrs = {};
-        let dataSource = resData.data.map((item) => {
-            const { id, sex, admin, dpm, add_time } = item;
-            return { id, sex, admin, dpm, add_time }
-        }) || [];
-        const total = resData.total || 0;
-        const columns = [{
-            dataIndex: 'id',
-            key: 'id',
-            title: '编号',
-        }, {
-            dataIndex: 'admin',
-            key: 'admin',
-            title: '姓名'
-        }, {
-            dataIndex: 'sex',
-            key: 'sex',
-            title: '性别'
-        }, {
-            dataIndex: 'dpm',
-            key: 'dpm',
-            title: '部门'
-        }, {
-            dataIndex: 'add_time',
-            key: 'add_time',
-            title: '入职时间'
-        }]
+    
+        console.log('重新渲染了组件：props', this.props, 67000);
+        // console.log(chartData)
+        
 
-        console.log('重新渲染了组件：props', this.props, 9000);
-        // 
-
+        
+        let options = chartOption;
+        options.series = chartData.datas;
+        options.xAxis[0].data = chartData.categories;
+        options.legend.data = chartData.datas.map(item => item.name);
+        
+        setTimeout(() => {
+            if(this.state.mychart){
+                this.state.mychart.setOption(options);
+                this.state.mychart.resize();
+            }
+        }, 0);
+        
 
         if (frozen) {
             attrs = {
@@ -63,15 +59,10 @@ class FlowAnalysis extends Component {
         }
 
         return (
-            <div className="flow-analysis">
-                流量分析
-                {/* {'haha'}
-                {
-                    resData.data.map(item =>
-                        <div key={item.admin}>{item.admin}:{item.sex}</div>)
-
-                } */}
-                <Table dataSource={dataSource} rowKey="id"   columns={columns} pagination={{pageSize:5,total:total,showTotal:() => `Total ${total} items`}} />
+            <div className="report-sheet">
+                报表分析
+                <div id="chartDemo" className="chart-demo" style={{display:this.state.showChart?'block':'none'}}></div>
+                
                 <br />
                 <button
                     {...attrs}
@@ -86,8 +77,8 @@ class FlowAnalysis extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        frozen: state._fetchTableData.frozen,
-        resData: state._fetchTableData.resData,
+        frozen: state._fetchChartData.frozen,
+        chartData: state._fetchChartData.chartData,
         // 像 (reduxState: state) 这样提供整个 state 是一种不好的实现,
         // 我们在这里这样写是为了让大家能看到我们页面字符串化的结果。更多信息请访问以下链接:
         // https://github.com/reactjs/react-redux/blob/master/docs/api.md#inject-dispatch-and-every-field-in-the-global-state
@@ -95,6 +86,6 @@ const mapStateToProps = (state, props) => {
     };
 };
 
-const ConnectedHome = connect(mapStateToProps)(FlowAnalysis);
+const ConnectedHome = connect(mapStateToProps)(ReportSheet);
 
 export default ConnectedHome;

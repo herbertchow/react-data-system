@@ -7,11 +7,6 @@ import "./Hbheader.less";
 
 class Hbheader extends Component {
     render() {
-        const options = [
-            { label: "首页", value: "1" },
-            { label: "流量", value: "2" },
-            { label: "报表", value: "3" }
-        ];
         return (
             <div className="hb-header">
                 <div className="hb-logo">
@@ -31,7 +26,7 @@ class Hbheader extends Component {
                             <Link to="/FlowAnalysis">流量</Link>
                         </Menu.Item>
                         <Menu.Item key="3">
-                            <Link to="/">报表</Link>
+                            <Link to="/ReportSheet">报表</Link>
                         </Menu.Item>
                     </Menu>
                 </div>
