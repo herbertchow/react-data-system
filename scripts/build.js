@@ -106,6 +106,7 @@ function build(previousFileSizes) {
   console.log('Creating an optimized production build...');
 
   let compiler = webpack(config);
+  compiler.apply(new webpack.ProgressPlugin());
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
       if (err) {
