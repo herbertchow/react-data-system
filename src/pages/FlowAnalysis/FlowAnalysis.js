@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Table } from 'antd';
+import { Table, Button } from "antd";
 import * as actionCreators from "../../redux/action-creators";
 import "./FlowAnalysis.less";
 
@@ -25,36 +25,42 @@ class FlowAnalysis extends Component {
         // 因为 Connect 我们能够通过 props 取到特定的数据
         let { frozen, resData } = this.props;
         let attrs = {};
-        let dataSource = resData.data.map((item) => {
-            const { id, sex, admin, dpm, add_time } = item;
-            return { id, sex, admin, dpm, add_time }
-        }) || [];
+        let dataSource =
+            resData.data.map(item => {
+                const { id, sex, admin, dpm, add_time } = item;
+                return { id, sex, admin, dpm, add_time };
+            }) || [];
         const total = resData.total || 0;
-        const columns = [{
-            dataIndex: 'id',
-            key: 'id',
-            title: '编号',
-        }, {
-            dataIndex: 'admin',
-            key: 'admin',
-            title: '姓名'
-        }, {
-            dataIndex: 'sex',
-            key: 'sex',
-            title: '性别'
-        }, {
-            dataIndex: 'dpm',
-            key: 'dpm',
-            title: '部门'
-        }, {
-            dataIndex: 'add_time',
-            key: 'add_time',
-            title: '入职时间'
-        }]
+        const columns = [
+            {
+                dataIndex: "id",
+                key: "id",
+                title: "编号"
+            },
+            {
+                dataIndex: "admin",
+                key: "admin",
+                title: "姓名"
+            },
+            {
+                dataIndex: "sex",
+                key: "sex",
+                title: "性别"
+            },
+            {
+                dataIndex: "dpm",
+                key: "dpm",
+                title: "部门"
+            },
+            {
+                dataIndex: "add_time",
+                key: "add_time",
+                title: "入职时间"
+            }
+        ];
 
-        console.log('重新渲染了组件：props', this.props, 9000);
-        // 
-
+        console.log("重新渲染了组件：props", this.props, 9000);
+        //
 
         if (frozen) {
             attrs = {
@@ -71,14 +77,20 @@ class FlowAnalysis extends Component {
                         <div key={item.admin}>{item.admin}:{item.sex}</div>)
 
                 } */}
-                <Table dataSource={dataSource} rowKey="id"   columns={columns} pagination={{pageSize:5,total:total,showTotal:() => `Total ${total} items`}} />
+                <Table
+                    dataSource={dataSource}
+                    rowKey="id"
+                    columns={columns}
+                    pagination={{
+                        pageSize: 5,
+                        total: total,
+                        showTotal: () => `Total ${total} items`
+                    }}
+                />
                 <br />
-                <button
-                    {...attrs}
-                    onClick={this.onTimeButtonClick}
-                >
+                <Button {...attrs} onClick={this.onTimeButtonClick}>
                     Get time!
-                    </button>
+                </Button>
             </div>
         );
     }

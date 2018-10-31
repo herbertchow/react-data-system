@@ -1,21 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../redux/action-creators";
-import chartOption from './chartOption';
-import echarts from 'echarts';
+import chartOption from "./chartOption";
+import echarts from "echarts";
+import { Button } from "antd";
 import "./ReportSheet.less";
 
 class ReportSheet extends Component {
     constructor(props) {
         super(props);
         this.onTimeButtonClick = this.onTimeButtonClick.bind(this);
-        this.state = {showChart:false,mychart:null};
+        this.state = { showChart: false, mychart: null };
     }
 
-    componentDidMount(){
-        this.setState({showChart : true});
-        const getEl = document.getElementById('chartDemo');
-        this.setState({mychart:echarts.init(getEl)});
+    componentDidMount() {
+        this.setState({ showChart: true });
+        const getEl = document.getElementById("chartDemo");
+        this.setState({ mychart: echarts.init(getEl) });
     }
 
     onTimeButtonClick() {
@@ -33,24 +34,21 @@ class ReportSheet extends Component {
         // 因为 Connect 我们能够通过 props 取到特定的数据
         let { frozen, chartData } = this.props;
         let attrs = {};
-    
-        console.log('重新渲染了组件：props', this.props, 67000);
-        // console.log(chartData)
-        
 
-        
+        console.log("重新渲染了组件：props", this.props, 67000);
+        // console.log(chartData)
+
         let options = chartOption;
         options.series = chartData.datas;
         options.xAxis[0].data = chartData.categories;
         options.legend.data = chartData.datas.map(item => item.name);
-        
+
         setTimeout(() => {
-            if(this.state.mychart){
+            if (this.state.mychart) {
                 this.state.mychart.setOption(options);
                 this.state.mychart.resize();
             }
         }, 0);
-        
 
         if (frozen) {
             attrs = {
@@ -61,15 +59,15 @@ class ReportSheet extends Component {
         return (
             <div className="report-sheet">
                 报表分析
-                <div id="chartDemo" className="chart-demo" style={{display:this.state.showChart?'block':'none'}}></div>
-                
+                <div
+                    id="chartDemo"
+                    className="chart-demo"
+                    style={{ display: this.state.showChart ? "block" : "none" }}
+                />
                 <br />
-                <button
-                    {...attrs}
-                    onClick={this.onTimeButtonClick}
-                >
+                <Button {...attrs} onClick={this.onTimeButtonClick}>
                     Get time!
-                    </button>
+                </Button>
             </div>
         );
     }
