@@ -122,7 +122,7 @@ function mapDispatchToProps(dispatch) {
             try {
                 var getres = await new Promise((res, rej) => {
                     setTimeout(() => {
-                        console.log("模拟延迟返回");
+                        // console.log("模拟延迟返回");
                         if (fail) {
                             rej("网络断开！");
                         } else if (error) {
