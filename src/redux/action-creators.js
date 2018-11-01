@@ -5,7 +5,7 @@ let TEST_DATA_PATH;
 if(window.location.hostname === 'localhost'){
     TEST_DATA_PATH = "/test/mock";
 }else{
-    TEST_DATA_PATH = "/pro/blog/test/mock";
+    TEST_DATA_PATH = "/pro/react-data-system/test/mock";
 }
 
 // 我们的 action 创建函数在一段延迟后获取当前时间，用于演示 promise 中间件的用法。
