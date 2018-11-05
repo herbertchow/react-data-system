@@ -1,23 +1,24 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
-import createStore from "./redux/create-store";
-import { Provider } from "react-redux";
-import "./normalize.css";
-import "./index.css";
-import "./assets/less/font.less";
-import App from "./App";
-import LoginCom from './pages/Login/Login';
-import registerServiceWorker from "./registerServiceWorker";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import Login from "./pages/Login/Login";
+import App from "./pages/App/App";
+// import * as actionCreators from "./redux/action-creators";
+// import { Button, Input } from "antd";
 
-const store = createStore();
+class Entry extends Component {
+    render() {
+        let isLogin = true;
+        return isLogin?(<Login />):<App />;
+    }
+}
 
-ReactDOM.render(
-    <Provider store={store}>
-        <Router>
-            <Entry />
-        </Router>
-    </Provider>,
-    document.getElementById("root")
-);
-registerServiceWorker();
+const mapStateToProps = (state, props) => {
+    return {
+        ...state
+    };
+};
+
+const ConnectedEntry = withRouter(connect(mapStateToProps)(Entry));
+
+export default ConnectedEntry;

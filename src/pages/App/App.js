@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actionCreators from "./redux/action-creators";
+import * as actionCreators from "../../redux/action-creators";
 import { Route, withRouter } from "react-router-dom";
-import "./App.css";
+import "./App.less";
 
 // import ReactDOM from 'react-dom';
 // import echarts from "echarts";
 
 import { Layout, Menu, Breadcrumb, Icon } from "antd";
-import Hbheader from "./components/layout/Hbheader";
-import IndexHome from "./pages/IndexHome/IndexHome";
-import FlowAnalysis from "./pages/FlowAnalysis/FlowAnalysis";
-import ReportSheet from './pages/ReportSheet/ReportSheet';
+import Hbheader from "../../components/layout/Hbheader";
+import IndexHome from "../IndexHome/IndexHome";
+import FlowAnalysis from "../FlowAnalysis/FlowAnalysis";
+import ReportSheet from '../ReportSheet/ReportSheet';
 
 
 const { SubMenu } = Menu;
