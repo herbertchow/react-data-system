@@ -8,10 +8,31 @@ import App from "./pages/App/App";
 // import { Button, Input } from "antd";
 
 class Entry extends Component {
+
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log(nextProps, this.props);
+    //     let { isLogin, history } = this.props;
+    //     if (!isLogin) {
+    //         history.replace('/Login');
+    //     } else {
+    //         history.replace('/');
+    //     }
+    //     if (nextProps.location.pathname !== this.props.location.pathname) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
     render() {
         let { isLogin, loading } = this.props;
         // console.log(isLogin, loading, "Entry mod,000");
-        return <Spin spinning={!!loading}>{isLogin ? <App /> : <Login />}</Spin>;
+
+        return (
+            <Spin spinning={!!loading}>
+                {isLogin ? <App /> : <Login />}
+            </Spin>
+        );
     }
 }
 

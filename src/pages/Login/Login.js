@@ -31,8 +31,8 @@ class Login extends Component {
     render() {
         let { userName, password } = this.state;
         return (
-            <div>
-                这里是登陆页 账号：{" "}
+            <div className="login-wrap">
+                这里是登陆页<br/> 账号：{" "}
                 <Input
                     placeholder="输入账号"
                     value={userName}
@@ -47,13 +47,23 @@ class Login extends Component {
                 />
                 <Button
                     type="primary"
-                    className="hb-user-selectbtn"
+                    className="login-confirm"
                     onClick={() => this.sendLogin({
                         userName: userName,
                         password: password
                     })}
                 >
                     确定
+                </Button>
+                <Button
+                    type="default"
+                    className="login-reg"
+                    onClick={() => this.sendLogin({
+                        userName: userName,
+                        password: password
+                    })}
+                >
+                    注册
                 </Button>
             </div>
         );
