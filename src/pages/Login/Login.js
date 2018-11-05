@@ -12,7 +12,6 @@ class Login extends Component {
             userName: "",
             password: ""
         };
-        // this.sendLogin = this.sendLogin.bind(this,arguments);
     }
 
     sendLogin({ userName, password }) {
