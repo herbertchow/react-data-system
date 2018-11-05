@@ -107,6 +107,6 @@ const mapStateToProps = (state, props) => {
     };
 };
 
-const ConnectedHome = connect(mapStateToProps)(FlowAnalysis);
+const ConnectedFlowAnalysis = connect(mapStateToProps)(FlowAnalysis);
 
-export default ConnectedHome;
+export default ConnectedFlowAnalysis;

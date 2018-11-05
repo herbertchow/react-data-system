@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import * as actionCreators from "../../redux/action-creators";
-import "./IndexHome.css";
+import "./IndexHome.less";
 
 class IndexHome extends Component {
     constructor(props) {
@@ -112,7 +112,7 @@ const mapStateToProps = (state /*, props*/) => {
 function mapDispatchToProps(dispatch) {
     // console.log(dispatch.toString(),111); //dispatch指向promise-middleware
     return {
-        //第一种异步请求方式，逻辑写在组件内，耦合度高，不建议使用，特殊情况可以写进来
+        //第一种异步请求方式，逻辑写在组件内，耦合度高，即便是在组建中请求，数据也可以分成两种：1、存在全局store中；2、存在组件本身state中
         sendTheAlert: async ({ error, fail }) => {
             //发送请求前
             dispatch({ type: "GET_TIME_REQUEST" });
@@ -165,9 +165,9 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-const ConnectedHome = connect(
+const ConnectedIndexHome = connect(
     mapStateToProps,
     mapDispatchToProps
 )(IndexHome);
 
-export default ConnectedHome;
+export default ConnectedIndexHome;

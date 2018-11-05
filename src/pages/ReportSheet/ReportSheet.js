@@ -14,6 +14,7 @@ class ReportSheet extends Component {
     }
 
     componentDidMount() {
+        console.log('dm')
         this.setState({ showChart: true });
         const getEl = document.getElementById("chartDemo");
         this.setState({ mychart: echarts.init(getEl) });
@@ -84,6 +85,6 @@ const mapStateToProps = (state, props) => {
     };
 };
 
-const ConnectedHome = connect(mapStateToProps)(ReportSheet);
+const ConnectedReportSheet = connect(mapStateToProps)(ReportSheet);
 
-export default ConnectedHome;
+export default ConnectedReportSheet;

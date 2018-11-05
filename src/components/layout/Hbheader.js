@@ -1,12 +1,20 @@
 import React, { Component } from "react";
 import logo from "../../logo.svg";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Menu, Popover, Button, Icon } from "antd";
 
 import "./Hbheader.less";
 
 class Hbheader extends Component {
+
     render() {
+        const navList = {
+            "/" : "1",
+            "/FlowAnalysis" : "2",
+            "/ReportSheet" : "3",
+        };
+        let stateRoute = this.props.location.pathname;
+
         return (
             <div className="hb-header">
                 <div className="hb-logo">
@@ -18,7 +26,7 @@ class Hbheader extends Component {
                         className="top-menu"
                         theme="dark"
                         mode="horizontal"
-                        defaultSelectedKeys={["1"]}
+                        defaultSelectedKeys={[navList[stateRoute]]}
                     >
                         <Menu.Item key="1">
                             <Link replace to="/">首页</Link>
@@ -48,4 +56,4 @@ class Hbheader extends Component {
     }
 }
 
-export default Hbheader;
+export default withRouter(Hbheader);

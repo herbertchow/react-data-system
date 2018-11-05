@@ -11,7 +11,8 @@ import { Layout, Menu, Breadcrumb, Icon } from "antd";
 import Hbheader from "./components/layout/Hbheader";
 import IndexHome from "./pages/IndexHome/IndexHome";
 import FlowAnalysis from "./pages/FlowAnalysis/FlowAnalysis";
-import ReportSheet from './pages/ReportSheet/ReportSheet'
+import ReportSheet from './pages/ReportSheet/ReportSheet';
+
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
@@ -19,10 +20,10 @@ const { Content, Sider } = Layout;
 // import "element-theme-default";
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        console.log(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    //     // console.log(props);
+    // }
 
     onTimeButtonClick(delay) {
         // 这个按钮处理器在用户的点击事件后会分发一个 action。

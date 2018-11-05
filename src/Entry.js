@@ -6,7 +6,6 @@ import { Provider } from "react-redux";
 import "./normalize.css";
 import "./index.css";
 import "./assets/less/font.less";
-import Entry from "./Entry";
 import App from "./App";
 import LoginCom from './pages/Login/Login';
 import registerServiceWorker from "./registerServiceWorker";
