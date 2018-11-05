@@ -106,3 +106,39 @@ export function fetchChartData() {
         }
     };
 }
+
+export function setLoginType({userName,password}) {
+    return {
+        types: [
+            "FETCH_LOGINTYPE_REQUEST",
+            "FETCH_LOGINTYPE_SUCCESS",
+            "FETCH_LOGINTYPE_FAILURE"
+        ],
+        promise: () => {
+            return new Promise((resolve, reject) => {
+                // 通过 setTimeout 来模拟一个异步服务器请求
+                setTimeout(() => {
+                    resolve({user:{name:userName||'游客'},isLogin:true});
+                }, 500);
+            });
+        }
+    };
+}
+
+export function setLogoutType() {
+    return {
+        types: [
+            "FETCH_LOGINTYPE_REQUEST",
+            "FETCH_LOGINTYPE_SUCCESS",
+            "FETCH_LOGINTYPE_FAILURE"
+        ],
+        promise: () => {
+            return new Promise((resolve, reject) => {
+                // 通过 setTimeout 来模拟一个异步服务器请求
+                setTimeout(() => {
+                    resolve({user:{name:null},isLogin:false});
+                }, 500);
+            });
+        }
+    };
+}

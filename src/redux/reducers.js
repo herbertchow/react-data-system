@@ -91,3 +91,28 @@ export function _fetchChartData(state = { chartData:{categories:[],datas:[],titl
 			return state
 	}
 }
+
+export function _loginType(state = {user:null, isLogin:false}, action) {
+    switch (action.type) {
+		case 'FETCH_LOGINTYPE_REQUEST':
+			return {
+				...state,
+				frozen: true
+			}
+		case 'FETCH_LOGINTYPE_SUCCESS':
+			return {
+                ...state,
+                isLogin: action.result.isLogin,
+				user: action.result.user,
+				frozen: false
+			}
+		case 'FETCH_LOGINTYPE_FAILURE':
+			// 这里我们可以添加一个错误消息，打印到我们应用程序的某个地方
+			return {
+				...state,
+				frozen: false
+			}
+		default:
+			return state
+	}
+}

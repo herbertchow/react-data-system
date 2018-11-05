@@ -2,20 +2,25 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Login from "./pages/Login/Login";
+import { Spin } from "antd";
 import App from "./pages/App/App";
 // import * as actionCreators from "./redux/action-creators";
 // import { Button, Input } from "antd";
 
 class Entry extends Component {
     render() {
-        let isLogin = true;
-        return isLogin?(<Login />):<App />;
+        let { isLogin, loading } = this.props;
+        // console.log(isLogin, loading, "Entry mod,000");
+        return <Spin spinning={!!loading}>{isLogin ? <App /> : <Login />}</Spin>;
     }
 }
 
 const mapStateToProps = (state, props) => {
+    // console.log(state, "Entry mod",state._loginType.frozen);
     return {
-        ...state
+        ...state,
+        isLogin: state._loginType ? state._loginType.isLogin : false,
+        loading: state._loginType ? state._loginType.frozen : false
     };
 };
 
