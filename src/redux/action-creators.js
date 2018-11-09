@@ -119,7 +119,7 @@ export function setLoginType({userName,password}) {
                 // 通过 setTimeout 来模拟一个异步服务器请求
                 setTimeout(() => {
                     resolve({user:{name:userName||'游客'},isLogin:true});
-                }, 500);
+                }, 1000);
             });
         }
     };

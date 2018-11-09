@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Switch, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import { Spin } from "antd";
 import App from "./pages/App/App";
@@ -10,27 +10,54 @@ import App from "./pages/App/App";
 class Entry extends Component {
 
     // shouldComponentUpdate(nextProps, nextState) {
-    //     console.log(nextProps, this.props);
+    //     // console.log(nextProps, this.props);
     //     let { isLogin, history } = this.props;
-    //     if (!isLogin) {
-    //         history.replace('/Login');
-    //     } else {
-    //         history.replace('/');
-    //     }
+        
     //     if (nextProps.location.pathname !== this.props.location.pathname) {
+    //         if (!isLogin) {
+    //             history.replace('/Login');
+    //         } else {
+    //             history.replace('/');
+    //         }
     //         return true;
     //     } else {
     //         return false;
     //     }
     // }
 
+    componentDidMount(){
+        console.log('componentDidMount')
+        let { isLogin } = this.props;
+        if(!isLogin){
+            this.props.history.replace('/Login')
+        }else{
+            this.props.history.replace('/')
+        }
+    }
+
+    componentWillReceiveProps(nextProps){
+        console.log('componentWillReceiveProps')
+        let { isLogin } = nextProps;
+        let oldLogin = this.props.isLogin;
+        if(oldLogin !== isLogin){
+            if(!isLogin){
+                this.props.history.replace('/Login')
+            }else{
+                this.props.history.replace('/')
+            }
+        }
+    }
+
     render() {
-        let { isLogin, loading } = this.props;
+        let { loading } = this.props;
         // console.log(isLogin, loading, "Entry mod,000");
 
         return (
             <Spin spinning={!!loading}>
-                {isLogin ? <App /> : <Login />}
+                <Switch>
+                    <Route path="/Login" component={Login} />
+                    <Route component={App} />
+                </Switch>
             </Spin>
         );
     }
