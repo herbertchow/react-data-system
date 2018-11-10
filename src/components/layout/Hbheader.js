@@ -44,7 +44,7 @@ class Hbheader extends Component {
                         className="top-menu"
                         theme="dark"
                         mode="horizontal"
-                        defaultSelectedKeys={[navList[stateRoute]]}
+                        selectedKeys={[navList[stateRoute]]}
                     >
                         <Menu.Item key="1">
                             <Link replace to="/">

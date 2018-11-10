@@ -119,6 +119,7 @@ export function setLoginType({userName,password}) {
                 // 通过 setTimeout 来模拟一个异步服务器请求
                 setTimeout(() => {
                     resolve({user:{name:userName||'游客'},isLogin:true});
+                    sessionStorage.loginInfo = JSON.stringify({user:{name:userName||'游客'},isLogin:true});
                 }, 1000);
             });
         }
@@ -137,6 +138,7 @@ export function setLogoutType() {
                 // 通过 setTimeout 来模拟一个异步服务器请求
                 setTimeout(() => {
                     resolve({user:{name:null},isLogin:false});
+                    sessionStorage.loginInfo = JSON.stringify({user:{name:null},isLogin:false});
                 }, 500);
             });
         }

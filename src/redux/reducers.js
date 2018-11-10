@@ -3,7 +3,15 @@
 // 1) 当收到 GET_TIME_REQUEST action，我们修改 state 来告诉 UI 的一部分需要被冻结(因为有一个挂起的操作)
 // 2) 当收到 GET_TIME_SUCCESS (或 GET_TIME_FAILURE)之后，我们修改 state 为不冻结应用程序，然后添加收到的新数据。
 
-var initialTimeState = {}
+var initialTimeState = {};
+
+function getLoginStatus(){
+    if(sessionStorage.loginInfo){
+        const obj = JSON.parse(sessionStorage.loginInfo);
+        return {user:{name:obj.user.name}, isLogin:obj.isLogin};
+    }
+    return {user:{name:null}, isLogin:false};
+}
 
 // 下面的 reducer 命名用"_"开头，用于从 state 中读取的时候，避免 state.time.time (出现两个 time )。
 // 这只是个人偏好你可以不必这样做，它取决于你如何对各个 reducer 命名，和在 Redux 的 store 中暴露哪些属性。
@@ -92,7 +100,7 @@ export function _fetchChartData(state = { chartData:{categories:[],datas:[],titl
 	}
 }
 
-export function _loginType(state = {user:null, isLogin:false}, action) {
+export function _loginType(state = getLoginStatus(), action) {
     switch (action.type) {
 		case 'FETCH_LOGINTYPE_REQUEST':
 			return {
