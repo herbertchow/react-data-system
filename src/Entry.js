@@ -8,42 +8,37 @@ import App from "./pages/App/App";
 // import { Button, Input } from "antd";
 
 class Entry extends Component {
-
     // shouldComponentUpdate(nextProps, nextState) {
-    //     // console.log(nextProps, this.props);
-    //     let { isLogin, history } = this.props;
-        
-    //     if (nextProps.location.pathname !== this.props.location.pathname) {
-    //         if (!isLogin) {
-    //             history.replace('/Login');
-    //         } else {
-    //             history.replace('/');
-    //         }
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
     // }
 
-    componentDidMount(){
-        console.log('componentDidMount')
-        let { isLogin } = this.props;
-        if(!isLogin){
-            this.props.history.replace('/Login')
-        }else{
-            this.props.history.replace('/')
+    componentDidMount() {
+        // console.log('componentDidMount')
+        let { isLogin, history, location } = this.props;
+        if (!isLogin) {
+            history.replace("/Login");
+        } else {
+            history.replace(location.pathname === "/Login" ? "/" : location.pathname);
         }
     }
 
-    componentWillReceiveProps(nextProps){
-        console.log('componentWillReceiveProps')
+    componentWillReceiveProps(nextProps) {
+        // console.log('componentWillReceiveProps')
         let { isLogin } = nextProps;
+        let { history } = this.props;
         let oldLogin = this.props.isLogin;
-        if(oldLogin !== isLogin){
-            if(!isLogin){
-                this.props.history.replace('/Login')
-            }else{
-                this.props.history.replace('/')
+        if (
+            oldLogin !== isLogin ||
+            (oldLogin === isLogin &&
+                nextProps.location.pathname !== this.props.location.pathname)
+        ) {
+            if (!isLogin) {
+                history.replace("/Login");
+            } else {
+                history.replace(
+                    nextProps.location.pathname === "/Login"
+                        ? "/"
+                        : nextProps.location.pathname
+                );
             }
         }
     }
