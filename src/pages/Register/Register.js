@@ -2,16 +2,11 @@ import React, { Component } from "react";
 import Promise from "bluebird";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import axios from "axios";
+import {ajaxGet} from "../../api/index.js";
+import api from "../../api/api.js";
 import { Button, Input, message } from "antd";
 import "./Register.less";
 
-let TEST_DATA_PATH;
-if(window.location.hostname === 'localhost'){
-    TEST_DATA_PATH = "/test/mock";
-}else{
-    TEST_DATA_PATH = "/pro/react-data-system/test/mock";
-}
 
 class Register extends Component {
     constructor(props) {
@@ -32,24 +27,24 @@ class Register extends Component {
         //才用async方式，测试模拟接口延迟返回
         try {
             var getres = await new Promise((resolve, reject) => {
-                axios
-                    .get(TEST_DATA_PATH + "/registerData.json", {
+                ajaxGet({
+                        url: api.REGISTRTDATA,
                         params: {
                             userName: userName,
                             password: password
                         }
                     })
-                    .then(function(response) {
+                    .then(function (response) {
                         setTimeout(() => {
                             resolve(response.data);
                         }, 500);
                     })
-                    .catch(function(error) {
+                    .catch(function (error) {
                         reject(error);
                     });
             });
 
-            if (getres.code == 200) {
+            if (getres.code === 200) {
                 dispatch({ type: "SET_ENTRYLOADING_HIDE" });
                 message.success(getres.msg);
                 this.goLogin();
