@@ -1,12 +1,6 @@
 // 我们使用 Bluebird(https://github.com/petkaantonov/bluebird) 作为 promise 库，但其实你可以用任何你喜欢的。
 import Promise from "bluebird";
-import axios from "axios";
-let TEST_DATA_PATH;
-if(window.location.hostname === 'localhost'){
-    TEST_DATA_PATH = "/test/mock";
-}else{
-    TEST_DATA_PATH = "/pro/react-data-system/test/mock";
-}
+
 
 // 我们的 action 创建函数在一段延迟后获取当前时间，用于演示 promise 中间件的用法。
 
