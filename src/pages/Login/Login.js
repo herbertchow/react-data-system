@@ -12,12 +12,17 @@ class Login extends Component {
             userName: "",
             password: ""
         };
+        this.goRegister = this.goRegister.bind(this);
     }
 
     sendLogin({ userName, password }) {
         this.props.dispatch(
             actionCreators.setLoginType({ userName, password })
         );
+    }
+
+    goRegister(){
+        this.props.history.push('/Register')
     }
 
     onChangeUserName = e => {
@@ -32,7 +37,7 @@ class Login extends Component {
         let { userName, password } = this.state;
         return (
             <div className="login-wrap">
-                这里是登陆页<br/> 账号：{" "}
+                登录页<br/>输入任意内容并登录<br/> 账号：{" "}
                 <Input
                     placeholder="输入账号"
                     value={userName}
@@ -43,6 +48,7 @@ class Login extends Component {
                 <Input
                     placeholder="输入密码"
                     value={password}
+                    type="password"
                     onChange={this.onChangeUserPwd}
                 />
                 <Button
@@ -58,10 +64,7 @@ class Login extends Component {
                 <Button
                     type="default"
                     className="login-reg"
-                    onClick={() => this.sendLogin({
-                        userName: userName,
-                        password: password
-                    })}
+                    onClick={this.goRegister}
                 >
                     注册
                 </Button>

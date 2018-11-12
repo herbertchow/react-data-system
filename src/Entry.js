@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Switch, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 import { Spin } from "antd";
 import App from "./pages/App/App";
 // import * as actionCreators from "./redux/action-creators";
@@ -14,8 +15,9 @@ class Entry extends Component {
     componentDidMount() {
         // console.log('componentDidMount')
         let { isLogin, history, location } = this.props;
+        
         if (!isLogin) {
-            history.replace("/Login");
+            location.pathname==='/Register'?history.replace(location.pathname):history.replace("/Login");
         } else {
             history.replace(location.pathname === "/Login" ? "/" : location.pathname);
         }
@@ -23,7 +25,7 @@ class Entry extends Component {
 
     componentWillReceiveProps(nextProps) {
         // console.log('componentWillReceiveProps')
-        let { isLogin } = nextProps;
+        let { isLogin, location } = nextProps;
         let { history } = this.props;
         let oldLogin = this.props.isLogin;
         if (
@@ -32,7 +34,7 @@ class Entry extends Component {
                 nextProps.location.pathname !== this.props.location.pathname)
         ) {
             if (!isLogin) {
-                history.replace("/Login");
+                location.pathname==='/Register'?history.replace(location.pathname):history.replace("/Login");
             } else {
                 history.replace(
                     nextProps.location.pathname === "/Login"
@@ -51,6 +53,7 @@ class Entry extends Component {
             <Spin spinning={!!loading}>
                 <Switch>
                     <Route path="/Login" component={Login} />
+                    <Route path="/Register" component={Register} />
                     <Route component={App} />
                 </Switch>
             </Spin>
@@ -58,12 +61,23 @@ class Entry extends Component {
     }
 }
 
+function getEntryLoading(state){
+    if(state._loginType || state._entryLoading){
+        let tag = false;
+        if(state._loginType.frozen || state._entryLoading.frozen){
+            tag = true;
+        }
+        return tag;
+    }
+    return false;
+}
+
 const mapStateToProps = (state, props) => {
     // console.log(state, "Entry mod",state._loginType.frozen);
     return {
         ...state,
         isLogin: state._loginType ? state._loginType.isLogin : false,
-        loading: state._loginType ? state._loginType.frozen : false
+        loading: getEntryLoading(state)//state._loginType ? state._loginType.frozen : false
     };
 };
 

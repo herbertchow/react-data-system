@@ -46,6 +46,7 @@ export function _time(state = initialTimeState, action) {
 	}
 }
 
+//示例表格数据
 export function _fetchTableData(state = { resData: { data: [] } }, action) {
 	// console.log('_fetchTableData ',9999, state,9999 );
 
@@ -73,6 +74,7 @@ export function _fetchTableData(state = { resData: { data: [] } }, action) {
 	}
 }
 
+//示例图表数据
 export function _fetchChartData(state = { chartData:{categories:[],datas:[],title:'' }}, action) {
 	// console.log('_fetchChartData ',9999, state,9999 );
 
@@ -100,6 +102,7 @@ export function _fetchChartData(state = { chartData:{categories:[],datas:[],titl
 	}
 }
 
+//登录状态
 export function _loginType(state = getLoginStatus(), action) {
     switch (action.type) {
 		case 'FETCH_LOGINTYPE_REQUEST':
@@ -118,6 +121,24 @@ export function _loginType(state = getLoginStatus(), action) {
 			// 这里我们可以添加一个错误消息，打印到我们应用程序的某个地方
 			return {
 				...state,
+				frozen: false
+			}
+		default:
+			return state
+	}
+}
+
+//首页loading
+export function _entryLoading(state = {}, action) {
+    switch (action.type) {
+		case 'SET_ENTRYLOADING_SHOW':
+			return {
+				...state,
+				frozen: true
+			}
+		case 'SET_ENTRYLOADING_HIDE':
+			return {
+                ...state,
 				frozen: false
 			}
 		default:

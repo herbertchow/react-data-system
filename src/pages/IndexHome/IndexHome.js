@@ -158,7 +158,7 @@ function mapDispatchToProps(dispatch) {
                 });
             }
         },
-        //第二种异步请求方式，逻辑写在action中，利于解耦，建议使用
+        //第二种异步请求方式，逻辑写在action中
         getTime: delay => {
             dispatch(actionCreators.getTime(delay));
         }
