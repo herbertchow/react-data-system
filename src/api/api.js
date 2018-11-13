@@ -1,5 +1,5 @@
 let TEST_DATA_PATH;
-if (window.location.hostname === 'localhost') {
+if (process.env.NODE_ENV === 'development') {
     TEST_DATA_PATH = "/test/mock";
 } else {
     TEST_DATA_PATH = "/pro/react-data-system/test/mock";
