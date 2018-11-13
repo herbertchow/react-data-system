@@ -6,15 +6,6 @@
 import axios from "axios";
 
 let promise;
-// export function ajaxGet({ url, params = {}, suc = () => { }, err = () => { } }) {
-//     if(!url){
-//         console.log('url is require');
-//         return;
-//     }
-//     return axios.get(url, {
-//         params: params
-//     });
-// }
 export let restful = {
     /**
      * 定义通用的请求函数

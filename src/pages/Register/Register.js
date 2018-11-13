@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Promise from "bluebird";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { restful } from "../../api/index.js";
-import { api } from "../../api/api.js";
+import { restful } from "@appSrc/api/index.js";
+import { api } from "@appSrc/api/api.js";
 import { Button, Input, message } from "antd";
 import "./Register.less";
 

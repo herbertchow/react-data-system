@@ -14,10 +14,10 @@ class ReportSheet extends Component {
     }
 
     componentDidMount() {
-        console.log('dm')
         this.setState({ showChart: true });
         const getEl = document.getElementById("chartDemo");
         this.setState({ mychart: echarts.init(getEl) });
+        this.onTimeButtonClick();
     }
 
     onTimeButtonClick() {
@@ -36,7 +36,7 @@ class ReportSheet extends Component {
         let { frozen, chartData } = this.props;
         let attrs = {};
 
-        console.log("重新渲染了组件：props", this.props, 67000);
+        // console.log("重新渲染了组件：props", this.props, 67000);
         // console.log(chartData)
 
         let options = chartOption;

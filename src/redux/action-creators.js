@@ -95,7 +95,6 @@ export function fetchChartData() {
                     url: api.CHARTDATA
                 })
                     .then(function(res) {
-                        console.log(res)
                         resolve(res);
                     })
                     .catch(function(error) {

@@ -14,7 +14,6 @@ class Hbheader extends Component {
     }
 
     setLogoutType() {
-        console.log(23312);
         this.props.dispatch(actionCreators.setLogoutType());
     }
 
@@ -81,7 +80,7 @@ class Hbheader extends Component {
 }
 
 const mapStateToProps = (state /*, props*/) => {
-    console.log(state);
+    // console.log(state);
     return {
         usrName : state._loginType&&state._loginType.user?state._loginType.user.name:''
     };

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Table, Button } from "antd";
-import * as actionCreators from "../../redux/action-creators";
+import * as actionCreators from "@appSrc/redux/action-creators";
 import "./FlowAnalysis.less";
 
 class FlowAnalysis extends Component {
@@ -19,6 +19,10 @@ class FlowAnalysis extends Component {
         // 被传到 actionCreators.getTime 的 delay 值是为了在我们能得到当前时间之前模拟异步的工作,
         // 试着修改这个值来正确影响我们的 UI
         this.props.dispatch(actionCreators.fetchTableData());
+    }
+
+    componentDidMount(){
+        this.onTimeButtonClick();
     }
 
     render() {
@@ -59,7 +63,7 @@ class FlowAnalysis extends Component {
             }
         ];
 
-        console.log("重新渲染了组件：props", this.props, 9000);
+        // console.log("重新渲染了组件：props", this.props, 9000);
         //
 
         if (frozen) {
