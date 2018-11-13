@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import Promise from "bluebird";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import {ajaxGet} from "../../api/index.js";
-import api from "../../api/api.js";
+import { restful } from "../../api/index.js";
+import { api } from "../../api/api.js";
 import { Button, Input, message } from "antd";
 import "./Register.less";
-
 
 class Register extends Component {
     constructor(props) {
@@ -19,6 +18,7 @@ class Register extends Component {
     }
 
     async sendRegister({ userName, password }) {
+        const { get } = restful;
         //发送请求前
         const { dispatch } = this.props;
         dispatch({ type: "SET_ENTRYLOADING_SHOW" });
@@ -27,23 +27,23 @@ class Register extends Component {
         //才用async方式，测试模拟接口延迟返回
         try {
             var getres = await new Promise((resolve, reject) => {
-                ajaxGet({
-                        url: api.REGISTRTDATA,
-                        params: {
-                            userName: userName,
-                            password: password
-                        }
-                    })
-                    .then(function (response) {
+                get({
+                    url: api.REGISTRTDATA,
+                    params: {
+                        userName: userName,
+                        password: password
+                    }
+                })
+                    .then(function(res) {
                         setTimeout(() => {
-                            resolve(response.data);
+                            resolve(res);
                         }, 500);
                     })
-                    .catch(function (error) {
+                    .catch(function(error) {
                         reject(error);
                     });
             });
-
+            
             if (getres.code === 200) {
                 dispatch({ type: "SET_ENTRYLOADING_HIDE" });
                 message.success(getres.msg);

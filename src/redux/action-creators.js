@@ -1,7 +1,9 @@
 // 我们使用 Bluebird(https://github.com/petkaantonov/bluebird) 作为 promise 库，但其实你可以用任何你喜欢的。
 import Promise from "bluebird";
+import { restful } from "../api/index.js";
+import { api } from "../api/api.js";
 
-
+const { fetch } = restful;
 // 我们的 action 创建函数在一段延迟后获取当前时间，用于演示 promise 中间件的用法。
 
 // promise 中间件接收2种情况的 action:
@@ -65,8 +67,9 @@ export function fetchTableData() {
                 // 		total: 100,
                 // 	})
                 // }, 500)
-                axios
-                    .get(TEST_DATA_PATH + "/tableData.json")
+                fetch({
+                    url: api.TABLEDATA
+                })
                     .then(function(response) {
                         resolve(response.data);
                     })
@@ -88,8 +91,9 @@ export function fetchChartData() {
         promise: () => {
             return new Promise((resolve, reject) => {
                 // 通过 setTimeout 来模拟一个异步服务器请求
-                axios
-                    .get(TEST_DATA_PATH + "/chartData.json")
+                fetch({
+                    url: api.CHARTDATA
+                })
                     .then(function(response) {
                         resolve(response.data);
                     })
@@ -101,7 +105,7 @@ export function fetchChartData() {
     };
 }
 
-export function setLoginType({userName,password}) {
+export function setLoginType({ userName, password }) {
     return {
         types: [
             "FETCH_LOGINTYPE_REQUEST",
@@ -112,8 +116,14 @@ export function setLoginType({userName,password}) {
             return new Promise((resolve, reject) => {
                 // 通过 setTimeout 来模拟一个异步服务器请求
                 setTimeout(() => {
-                    resolve({user:{name:userName||'游客'},isLogin:true});
-                    sessionStorage.loginInfo = JSON.stringify({user:{name:userName||'游客'},isLogin:true});
+                    resolve({
+                        user: { name: userName || "游客" },
+                        isLogin: true
+                    });
+                    sessionStorage.loginInfo = JSON.stringify({
+                        user: { name: userName || "游客" },
+                        isLogin: true
+                    });
                 }, 1000);
             });
         }
@@ -131,8 +141,11 @@ export function setLogoutType() {
             return new Promise((resolve, reject) => {
                 // 通过 setTimeout 来模拟一个异步服务器请求
                 setTimeout(() => {
-                    resolve({user:{name:null},isLogin:false});
-                    sessionStorage.loginInfo = JSON.stringify({user:{name:null},isLogin:false});
+                    resolve({ user: { name: null }, isLogin: false });
+                    sessionStorage.loginInfo = JSON.stringify({
+                        user: { name: null },
+                        isLogin: false
+                    });
                 }, 500);
             });
         }
