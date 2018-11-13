@@ -3,7 +3,7 @@ import Promise from "bluebird";
 import { restful } from "../api/index.js";
 import { api } from "../api/api.js";
 
-const { fetch } = restful;
+const { get } = restful;
 // 我们的 action 创建函数在一段延迟后获取当前时间，用于演示 promise 中间件的用法。
 
 // promise 中间件接收2种情况的 action:
@@ -67,11 +67,11 @@ export function fetchTableData() {
                 // 		total: 100,
                 // 	})
                 // }, 500)
-                fetch({
+                get({
                     url: api.TABLEDATA
                 })
-                    .then(function(response) {
-                        resolve(response.data);
+                    .then(function(res) {
+                        resolve(res);
                     })
                     .catch(function(error) {
                         reject(error);
@@ -91,11 +91,12 @@ export function fetchChartData() {
         promise: () => {
             return new Promise((resolve, reject) => {
                 // 通过 setTimeout 来模拟一个异步服务器请求
-                fetch({
+                get({
                     url: api.CHARTDATA
                 })
-                    .then(function(response) {
-                        resolve(response.data);
+                    .then(function(res) {
+                        console.log(res)
+                        resolve(res);
                     })
                     .catch(function(error) {
                         reject(error);
