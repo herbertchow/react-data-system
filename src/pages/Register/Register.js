@@ -18,6 +18,10 @@ class Register extends Component {
     }
 
     async sendRegister({ userName, password }) {
+        // console.log(userName,password);
+        if(!userName || !password){
+            return message.error('用户名及密码必填');
+        }
         const { get } = restful;
         //发送请求前
         const { dispatch } = this.props;
