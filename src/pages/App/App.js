@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../redux/action-creators";
-import { Route, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import MyRouter from "@appSrc/router";
 import "./App.less";
 
 // import ReactDOM from 'react-dom';
@@ -9,10 +10,9 @@ import "./App.less";
 
 import { Layout, Menu, Breadcrumb, Icon } from "antd";
 import Hbheader from "../../components/layout/Hbheader";
-import IndexHome from "../IndexHome/IndexHome";
-import FlowAnalysis from "../FlowAnalysis/FlowAnalysis";
-import ReportSheet from '../ReportSheet/ReportSheet';
 
+import routesConfig from "@appSrc/router/config";
+import { getRoutesConfig } from "@appSrc/utils";
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
@@ -96,7 +96,9 @@ class App extends Component {
                         </Menu>
                     </Sider>
                     <Layout style={{ padding: "0 24px 24px" }}>
-                        <Breadcrumb style={{ margin: "16px 0",textAlign:"left" }}>
+                        <Breadcrumb
+                            style={{ margin: "16px 0", textAlign: "left" }}
+                        >
                             <Breadcrumb.Item>Home</Breadcrumb.Item>
                             <Breadcrumb.Item>List</Breadcrumb.Item>
                             <Breadcrumb.Item>App</Breadcrumb.Item>
@@ -107,18 +109,15 @@ class App extends Component {
                                 padding: 24,
                                 margin: 0,
                                 minHeight: 280,
-                                position:"relative"
+                                position: "relative"
                             }}
                         >
                             <div>
-                                <Route exact path="/" component={IndexHome} />
-                                <Route
-                                    path="/FlowAnalysis"
-                                    component={FlowAnalysis}
-                                />
-                                <Route
-                                    path="/ReportSheet"
-                                    component={ReportSheet}
+                                <MyRouter
+                                    startRouterRoot={getRoutesConfig(
+                                        routesConfig.main,
+                                        "App"
+                                    )}
                                 />
                             </div>
                         </Content>

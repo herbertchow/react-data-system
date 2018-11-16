@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter, Switch, Route } from "react-router-dom";
-import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
+import { withRouter } from "react-router-dom";
 import { Spin } from "antd";
-import App from "./pages/App/App";
+import MyRouter from "@appSrc/router";
 // import * as actionCreators from "./redux/action-creators";
 // import { Button, Input } from "antd";
 
@@ -15,11 +13,15 @@ class Entry extends Component {
     componentDidMount() {
         // console.log('componentDidMount')
         let { isLogin, history, location } = this.props;
-        
+
         if (!isLogin) {
-            location.pathname==='/Register'?history.replace(location.pathname):history.replace("/Login");
+            location.pathname === "/Register"
+                ? history.replace(location.pathname)
+                : history.replace("/Login");
         } else {
-            history.replace(location.pathname === "/Login" ? "/" : location.pathname);
+            history.replace(
+                location.pathname === "/Login" ? "/" : location.pathname
+            );
         }
     }
 
@@ -34,7 +36,9 @@ class Entry extends Component {
                 nextProps.location.pathname !== this.props.location.pathname)
         ) {
             if (!isLogin) {
-                location.pathname==='/Register'?history.replace(location.pathname):history.replace("/Login");
+                location.pathname === "/Register"
+                    ? history.replace(location.pathname)
+                    : history.replace("/Login");
             } else {
                 history.replace(
                     nextProps.location.pathname === "/Login"
@@ -48,23 +52,18 @@ class Entry extends Component {
     render() {
         let { loading } = this.props;
         // console.log(isLogin, loading, "Entry mod,000");
-
         return (
             <Spin spinning={!!loading}>
-                <Switch>
-                    <Route path="/Login" component={Login} />
-                    <Route path="/Register" component={Register} />
-                    <Route component={App} />
-                </Switch>
+                <MyRouter />
             </Spin>
         );
     }
 }
 
-function getEntryLoading(state){
-    if(state._loginType || state._entryLoading){
+function getEntryLoading(state) {
+    if (state._loginType || state._entryLoading) {
         let tag = false;
-        if(state._loginType.frozen || state._entryLoading.frozen){
+        if (state._loginType.frozen || state._entryLoading.frozen) {
             tag = true;
         }
         return tag;
@@ -77,7 +76,7 @@ const mapStateToProps = (state, props) => {
     return {
         ...state,
         isLogin: state._loginType ? state._loginType.isLogin : false,
-        loading: getEntryLoading(state)//state._loginType ? state._loginType.frozen : false
+        loading: getEntryLoading(state) //state._loginType ? state._loginType.frozen : false
     };
 };
 
