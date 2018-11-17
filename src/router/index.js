@@ -4,7 +4,8 @@
  * @description 路由配置
  */
 import React, { Component } from "react";
-import { Route, Redirect, Switch } from "react-router-dom";
+import { Route, Redirect, Switch, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import AllComponents from "../components";
 import routesConfig from "./config";
 
@@ -24,10 +25,48 @@ class MyRouter extends Component {
     //     }
     //     return permission ? this.requireAuth(permission, component) : component;
     // };
+    componentDidMount() {
+        // console.log('componentDidMount')
+        let { isLogin, history, location } = this.props;
+
+        if (!isLogin) {
+            location.pathname === "/Register"
+                ? history.replace(location.pathname)
+                : history.replace("/Login");
+        } else {
+            history.replace(
+                location.pathname === "/Login" ? "/" : location.pathname
+            );
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        // console.log('componentWillReceiveProps')
+        let { isLogin, location } = nextProps;
+        let { history } = this.props;
+        let oldLogin = this.props.isLogin;
+        if (
+            oldLogin !== isLogin ||
+            (oldLogin === isLogin &&
+                nextProps.location.pathname !== this.props.location.pathname)
+        ) {
+            if (!isLogin) {
+                location.pathname === "/Register"
+                    ? history.replace(location.pathname)
+                    : history.replace("/Login");
+            } else {
+                history.replace(
+                    nextProps.location.pathname === "/Login"
+                        ? "/"
+                        : nextProps.location.pathname
+                );
+            }
+        }
+    }
 
     render() {
         const { startRouterRoot } = this.props;
-        
+
         let rootObj = routesConfig;
         if (startRouterRoot) {
             rootObj = startRouterRoot;
@@ -53,8 +92,8 @@ class MyRouter extends Component {
                                         !ParentComponentName ? (
                                             <Component {...props} />
                                         ) : (
-                                            <ParentComponentName {...props} />
-                                        )
+                                                <ParentComponentName {...props} />
+                                            )
                                     }
                                 />
                             );
@@ -66,10 +105,18 @@ class MyRouter extends Component {
                     })
                 )}
 
-                <Route render={() => <Redirect to="/404" />} />
+                <Route render={() => <Redirect to={"/404"} />} />
             </Switch>
         );
     }
 }
 
-export default MyRouter;
+const mapStateToProps = (state, props) => {
+    // console.log(state, "Entry mod",state._loginType.frozen);
+    return {
+        ...state,
+        isLogin: state._loginType ? state._loginType.isLogin : false,
+    };
+};
+
+export default withRouter(connect(mapStateToProps)(MyRouter));

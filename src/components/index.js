@@ -14,6 +14,7 @@ import FlowAnalysis from '@appSrc/pages/FlowAnalysis/FlowAnalysis';
 import ReportSheet from '@appSrc/pages/ReportSheet/ReportSheet';
 import Login from '@appSrc/pages/Login/Login';
 import Register from '@appSrc/pages/Register/Register';
+import Common404 from '@appSrc/pages/Common/Common404';
 
 export default {
     Hbheader,
@@ -23,4 +24,5 @@ export default {
     ReportSheet,
     Login,
     Register,
+    Common404,
 }

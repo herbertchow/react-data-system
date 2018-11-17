@@ -7,6 +7,7 @@ export default {
             component: "Register"
         },
         { route: "/Login", title: "登录", component: "Login" },
+        { route: "/404", title: "404", component: "Common404" },
         {
             route: "/",
             title: "首页",
