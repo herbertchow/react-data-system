@@ -115,7 +115,7 @@ class App extends Component {
                             <div>
                                 <MyRouter
                                     startRouterRoot={getRoutesConfig(
-                                        routesConfig.main,
+                                        routesConfig,
                                         "App"
                                     )}
                                 />

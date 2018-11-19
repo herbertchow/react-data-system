@@ -73,8 +73,8 @@ class MyRouter extends Component {
         }
         return (
             <Switch>
-                {Object.keys(rootObj).map(key =>
-                    rootObj[key].map(r => {
+                {
+                    rootObj.map(r => {
                         const route = (r, parentcomponentname) => {
                             const Component = AllComponents[r.component];
                             const ParentComponentName =
@@ -103,7 +103,7 @@ class MyRouter extends Component {
                             ? route(r)
                             : r.children.map(cr => route(cr, r.componentName));
                     })
-                )}
+                }
 
                 <Route render={() => <Redirect to={"/404"} />} />
             </Switch>

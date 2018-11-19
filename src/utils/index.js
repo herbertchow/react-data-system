@@ -1,8 +1,8 @@
 export function getRoutesConfig(parentArr, name){
-    let obj = { main: [] };
+    let obj = [];
     parentArr.forEach(item => {
         if (item.componentName === name) {
-            obj.main = item.children;
+            obj = item.children;
         } else if (item.children) {
             getRoutesConfig(item.children, name);
         }
