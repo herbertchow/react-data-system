@@ -25,19 +25,36 @@ class MyRouter extends Component {
     //     }
     //     return permission ? this.requireAuth(permission, component) : component;
     // };
-    componentDidMount() {
-        // console.log('componentDidMount')
-        let { isLogin, history, location } = this.props;
 
+    isRouteExist(src) {
+        return !!routesConfig.find(item=>{
+            return item.route === src
+        })
+    }
+
+    getRouteStatus(isLogin, location, history, nextPropsLocation) {
+        console.log(this.isRouteExist(location.pathname),435354)
         if (!isLogin) {
+            // if(!this.isRouteExist(location.pathname)){
+            //     history.replace("/404")
+            //     return;
+            // }
             location.pathname === "/Register"
                 ? history.replace(location.pathname)
                 : history.replace("/Login");
         } else {
             history.replace(
-                location.pathname === "/Login" ? "/" : location.pathname
+                nextPropsLocation.pathname === "/Login"
+                    ? "/"
+                    : nextPropsLocation.pathname
             );
         }
+    }
+
+    componentDidMount() {
+        // console.log('componentDidMount')
+        let { isLogin, history, location } = this.props;
+        this.getRouteStatus(isLogin, location, history, location);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -50,17 +67,7 @@ class MyRouter extends Component {
             (oldLogin === isLogin &&
                 nextProps.location.pathname !== this.props.location.pathname)
         ) {
-            if (!isLogin) {
-                location.pathname === "/Register"
-                    ? history.replace(location.pathname)
-                    : history.replace("/Login");
-            } else {
-                history.replace(
-                    nextProps.location.pathname === "/Login"
-                        ? "/"
-                        : nextProps.location.pathname
-                );
-            }
+            this.getRouteStatus(isLogin, location, history, nextProps.location);
         }
     }
 
@@ -73,37 +80,35 @@ class MyRouter extends Component {
         }
         return (
             <Switch>
-                {
-                    rootObj.map(r => {
-                        const route = (r, parentcomponentname) => {
-                            const Component = AllComponents[r.component];
-                            const ParentComponentName =
-                                AllComponents[parentcomponentname];
+                {rootObj.map(r => {
+                    const route = (r, parentcomponentname) => {
+                        const Component = AllComponents[r.component];
+                        const ParentComponentName =
+                            AllComponents[parentcomponentname];
 
-                            return (
-                                <Route
-                                    key={r.route || r.key}
-                                    exact
-                                    path={r.route || r.key}
-                                    // render={props => r.login ?
-                                    //     <Component {...props} />
-                                    //     : this.requireLogin(<Component {...props} />, r.auth)}
-                                    render={props =>
-                                        !ParentComponentName ? (
-                                            <Component {...props} />
-                                        ) : (
-                                                <ParentComponentName {...props} />
-                                            )
-                                    }
-                                />
-                            );
-                        };
+                        return (
+                            <Route
+                                key={r.route || r.key}
+                                exact
+                                path={r.route || r.key}
+                                // render={props => r.login ?
+                                //     <Component {...props} />
+                                //     : this.requireLogin(<Component {...props} />, r.auth)}
+                                render={props =>
+                                    !ParentComponentName ? (
+                                        <Component {...props} />
+                                    ) : (
+                                        <ParentComponentName {...props} />
+                                    )
+                                }
+                            />
+                        );
+                    };
 
-                        return r.component
-                            ? route(r)
-                            : r.children.map(cr => route(cr, r.componentName));
-                    })
-                }
+                    return r.component
+                        ? route(r)
+                        : r.children.map(cr => route(cr, r.componentName));
+                })}
 
                 <Route render={() => <Redirect to={"/404"} />} />
             </Switch>
@@ -115,7 +120,7 @@ const mapStateToProps = (state, props) => {
     // console.log(state, "Entry mod",state._loginType.frozen);
     return {
         ...state,
-        isLogin: state._loginType ? state._loginType.isLogin : false,
+        isLogin: state._loginType ? state._loginType.isLogin : false
     };
 };
 
