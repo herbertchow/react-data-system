@@ -27,28 +27,40 @@ class MyRouter extends Component {
     // };
 
     isRouteExist(src) {
-        return !!routesConfig.find(item=>{
-            return item.route === src
-        })
+        let tag = false;
+        function __find(el,target){
+            el.forEach(item=>{
+                if(item.route === src){
+                    tag = true;
+                }else if(item.children){
+                    __find(item.children,src);
+                }
+            })
+        }
+        __find(routesConfig,src)
+        return tag;
     }
 
     getRouteStatus(isLogin, location, history, nextPropsLocation) {
-        console.log(this.isRouteExist(location.pathname),435354)
-        if (!isLogin) {
-            // if(!this.isRouteExist(location.pathname)){
-            //     history.replace("/404")
-            //     return;
-            // }
-            location.pathname === "/Register"
-                ? history.replace(location.pathname)
-                : history.replace("/Login");
+        // console.log(this.isRouteExist(location.pathname), 435354);
+        if (!this.isRouteExist(location.pathname)) {
+            history.replace("/404");
+        } else if (location.pathname === "/404") {
+            history.replace("/404");
         } else {
-            history.replace(
-                nextPropsLocation.pathname === "/Login"
-                    ? "/"
-                    : nextPropsLocation.pathname
-            );
+            if (!isLogin) {
+                location.pathname === "/Register"
+                    ? history.replace(location.pathname)
+                    : history.replace("/Login");
+            } else {
+                history.replace(
+                    nextPropsLocation.pathname === "/Login"
+                        ? "/"
+                        : nextPropsLocation.pathname
+                );
+            }
         }
+
     }
 
     componentDidMount() {
@@ -98,8 +110,8 @@ class MyRouter extends Component {
                                     !ParentComponentName ? (
                                         <Component {...props} />
                                     ) : (
-                                        <ParentComponentName {...props} />
-                                    )
+                                            <ParentComponentName {...props} />
+                                        )
                                 }
                             />
                         );
