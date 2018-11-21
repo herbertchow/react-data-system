@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import * as actionCreators from "../../redux/action-creators";
 import { Menu, Popover, Button, Icon } from "antd";
+import GLOBALTEXT from "@appSrc/assets/text/global-text";
 
 import "./Hbheader.less";
 
@@ -24,7 +25,7 @@ class Hbheader extends Component {
             "/ReportSheet": "3"
         };
         let stateRoute = this.props.location.pathname;
-        const {usrName} = this.props;
+        const { usrName } = this.props;
 
         const content = (
             <Button type="default" onClick={this.setLogoutType}>
@@ -36,7 +37,7 @@ class Hbheader extends Component {
             <div className="hb-header">
                 <div className="hb-logo">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <span className="App-logo-text">赫伯特数据</span>
+                    <span className="App-logo-text">{GLOBALTEXT.GLOBAL.APPNAME}</span>
                 </div>
                 <div className="top-menu-wrap">
                     <Menu
@@ -47,17 +48,17 @@ class Hbheader extends Component {
                     >
                         <Menu.Item key="1">
                             <Link replace to="/">
-                                首页
+                                {GLOBALTEXT.COMPONENTS.INDEXHOME}
                             </Link>
                         </Menu.Item>
                         <Menu.Item key="2">
                             <Link replace to="/FlowAnalysis">
-                                流量
+                                {GLOBALTEXT.COMPONENTS.FLOWANALYSIS}
                             </Link>
                         </Menu.Item>
                         <Menu.Item key="3">
                             <Link replace to="/ReportSheet">
-                                报表
+                                {GLOBALTEXT.COMPONENTS.REPORTSHEET}
                             </Link>
                         </Menu.Item>
                     </Menu>
@@ -82,7 +83,10 @@ class Hbheader extends Component {
 const mapStateToProps = (state /*, props*/) => {
     // console.log(state);
     return {
-        usrName : state._loginType&&state._loginType.user?state._loginType.user.name:''
+        usrName:
+            state._loginType && state._loginType.user
+                ? state._loginType.user.name
+                : ""
     };
 };
 

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Table, Button } from "antd";
 import * as actionCreators from "@appSrc/redux/action-creators";
 import "./FlowAnalysis.less";
+import GLOBALTEXT from "@appSrc/assets/text/global-text";
 
 class FlowAnalysis extends Component {
     constructor(props) {
@@ -74,7 +75,7 @@ class FlowAnalysis extends Component {
 
         return (
             <div className="flow-analysis">
-                流量分析
+                {GLOBALTEXT.FLOWANALYSIS.FLOWANALYSIS}
                 {/* {'haha'}
                 {
                     resData.data.map(item =>

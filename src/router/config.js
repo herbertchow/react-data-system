@@ -1,26 +1,32 @@
+import GLOBALTEXT from "@appSrc/assets/text/global-text";
+
 export default [
     // 主路由
     {
         route: "/Register",
-        title: "注册",
+        title: GLOBALTEXT.COMPONENTS.REGISTER,
         component: "Register"
     },
-    { route: "/Login", title: "登录", component: "Login" },
+    { route: "/Login", title: GLOBALTEXT.COMPONENTS.LOGIN, component: "Login" },
     { route: "/404", title: "404", component: "Common404" },
     {
         route: "/",
-        title: "首页",
+        title: GLOBALTEXT.COMPONENTS.INDEXHOME,
         componentName: "App",
         children: [
-            { route: "/", title: "首页", component: "IndexHome" },
+            {
+                route: "/",
+                title: GLOBALTEXT.COMPONENTS.INDEXHOME,
+                component: "IndexHome",
+            },
             {
                 route: "/FlowAnalysis",
-                title: "流量",
+                title: GLOBALTEXT.COMPONENTS.FLOWANALYSIS,
                 component: "FlowAnalysis"
             },
             {
                 route: "/ReportSheet",
-                title: "报表",
+                title: GLOBALTEXT.COMPONENTS.REPORTSHEET,
                 component: "ReportSheet"
             }
         ]

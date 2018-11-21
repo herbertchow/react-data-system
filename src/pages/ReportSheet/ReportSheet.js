@@ -5,6 +5,7 @@ import chartOption from "./chartOption";
 import echarts from "echarts";
 import { Button } from "antd";
 import "./ReportSheet.less";
+import GLOBALTEXT from "@appSrc/assets/text/global-text";
 
 class ReportSheet extends Component {
     constructor(props) {
@@ -59,7 +60,7 @@ class ReportSheet extends Component {
 
         return (
             <div className="report-sheet">
-                报表分析
+                {GLOBALTEXT.REPORTSHEET.REPORTSHEET}
                 <div
                     id="chartDemo"
                     className="chart-demo"
