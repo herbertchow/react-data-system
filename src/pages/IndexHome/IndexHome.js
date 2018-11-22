@@ -53,9 +53,11 @@ class IndexHome extends Component {
                         provided after a {DELAY}
                         ms delay.
                         <br />
-                        Try to change this value (in{" "}
-                        <b>src/home.jsx - line 95</b>) to verify that the delay
-                        given correctly impacts our UI.
+                        第一种异步请求方式，逻辑写在组件内，即便是在组建中请求，数据也可以分成两种：1、存在全局store中；2、存在组件本身state中
+                        <br/>
+                        也即可以写在mapDispatchToProps 或者 本组件自身方法中(如vue的methods)
+                        <br/>
+                        第二种异步请求方式，逻辑写在action中
                     </i>
                     <br />
                     {/* 这里注册按钮的 "onClick" 句柄: */}
@@ -63,10 +65,10 @@ class IndexHome extends Component {
                         {...attrs}
                         onClick={() => this.onTimeButtonClick(DELAY)}
                     >
-                        Get time!
+                        法一:逻辑写在action中
                     </Button>
                     <Button {...attrs} onClick={this.sendAlert}>
-                        测试mapDispatchToProps并返回成功
+                    法二:逻辑写在组件中，测试mapDispatchToProps并返回成功
                     </Button>
                     <Button
                         {...attrs}

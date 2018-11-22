@@ -68,7 +68,7 @@ class ReportSheet extends Component {
                 />
                 <br />
                 <Button {...attrs} onClick={this.onTimeButtonClick}>
-                    Get time!
+                    查询
                 </Button>
             </div>
         );

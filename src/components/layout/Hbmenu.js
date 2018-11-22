@@ -2,9 +2,11 @@ import React, { Component } from "react";
 
 // import ReactDOM from 'react-dom';
 // import echarts from "echarts";
+import { Link } from "react-router-dom";
 
 import { Layout, Menu, Icon } from "antd";
 import MENUCONFIG from "@appSrc/router/menu";
+import "./Hbmenu.less";
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
@@ -13,12 +15,18 @@ const { Sider } = Layout;
 
 class Hbmenu extends Component {
     render() {
-        let root = MENUCONFIG.INDEXHOME;
+        const { nameSpace } = this.props;
+
+        let root = MENUCONFIG[nameSpace];
         let parentRoot = root.filter(item => {
-            return !!item.subMenu
+            return !!item.subMenu;
         });
         return (
-            <Sider width={200} style={{ background: "#fff" }}>
+            <Sider
+                className="hb-menu"
+                width={200}
+                style={{ background: "#fff" }}
+            >
                 <Menu
                     mode="inline"
                     defaultSelectedKeys={[root[0].name]}
@@ -32,9 +40,17 @@ class Hbmenu extends Component {
                                     {rItem.icon ? (
                                         <Icon type={rItem.icon} />
                                     ) : (
-                                            ""
-                                        )}
-                                    <span>{rItem.name}</span>
+                                        ""
+                                    )}
+                                    {rItem.link ? (
+                                        <span className="full-span">
+                                            <Link to={rItem.link}>
+                                                {rItem.name}
+                                            </Link>
+                                        </span>
+                                    ) : (
+                                        <span>{rItem.name}</span>
+                                    )}
                                 </Menu.Item>
                             );
                         } else if (!!rItem.subMenu) {
@@ -46,19 +62,31 @@ class Hbmenu extends Component {
                                             {rItem.icon ? (
                                                 <Icon type={rItem.icon} />
                                             ) : (
-                                                    ""
-                                                )}
+                                                ""
+                                            )}
                                             <span>{rItem.name}</span>
                                         </span>
                                     }
                                 >
                                     {rItem.subMenu.map(rItem2 => {
-                                        return <Menu.Item key={rItem2.name}>{rItem2.name}</Menu.Item>
+                                        return (
+                                            <Menu.Item key={rItem2.name}>
+                                                {rItem2.link ? (
+                                                    <span className="full-span">
+                                                        <Link to={rItem2.link}>
+                                                            {rItem2.name}
+                                                        </Link>
+                                                    </span>
+                                                ) : (
+                                                    <span>{rItem2.name}</span>
+                                                )}
+                                            </Menu.Item>
+                                        );
                                     })}
                                 </SubMenu>
                             );
                         } else {
-                            return '';
+                            return "";
                         }
                     })}
                 </Menu>

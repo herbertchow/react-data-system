@@ -108,9 +108,9 @@ class MyRouter extends Component {
                                 //     : this.requireLogin(<Component {...props} />, r.auth)}
                                 render={props =>
                                     !ParentComponentName ? (
-                                        <Component {...props} />
+                                        <Component {...props} nameSpace={r.nameSpace} />
                                     ) : (
-                                            <ParentComponentName {...props} />
+                                            <ParentComponentName {...props} nameSpace={r.nameSpace} />
                                         )
                                 }
                             />

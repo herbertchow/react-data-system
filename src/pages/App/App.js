@@ -38,13 +38,13 @@ class App extends Component {
 
     render() {
         // 因为 Connect 我们能够通过 props 取到特定的数据
-
+        const props = this.props;
         return (
             <div className="App">
                 <Hbheader />
 
                 <Layout className="hb-main-layout">
-                    <Hbmenu />
+                    <Hbmenu {...props}/>
                     <Layout style={{ padding: "0 24px 24px" }}>
                         <Breadcrumb
                             style={{ margin: "16px 0", textAlign: "left" }}

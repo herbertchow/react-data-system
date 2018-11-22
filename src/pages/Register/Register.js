@@ -12,7 +12,8 @@ class Register extends Component {
         super(props);
         this.state = {
             userName: "",
-            password: ""
+            password: "",
+            result:"",
         };
         this.goLogin = this.goLogin.bind(this);
     }
@@ -38,12 +39,13 @@ class Register extends Component {
                         password: password
                     }
                 })
-                    .then(function(res) {
+                    .then((res)=> {
+                        this.setState({result:'请稍等'});
                         setTimeout(() => {
                             resolve(res);
-                        }, 500);
+                        }, 2000);
                     })
-                    .catch(function(error) {
+                    .catch((error)=> {
                         reject(error);
                     });
             });
@@ -75,9 +77,11 @@ class Register extends Component {
     };
 
     render() {
-        let { userName, password } = this.state;
+        let { userName, password,result } = this.state;
         return (
             <div className="register-wrap">
+                {result}
+                <br/>
                 注册页
                 <br />
                 输入任意内容并注册
@@ -87,6 +91,7 @@ class Register extends Component {
                     value={userName}
                     onChange={this.onChangeUserName}
                 />
+                
                 <br />
                 密码：
                 <Input
