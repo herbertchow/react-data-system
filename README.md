@@ -20,12 +20,14 @@ package.json已经限定好版本
 
 ```
 │  .gitignore
+│  ga.txt
 │  LICENSE
 │  package.json
 │  README.md
+│  run_copy _自动复制打包文件.bat
 │  yarn.lock
 │  
-├─build   //打包文件夹
+├─build  //打包文件夹
 │  │  asset-manifest.json
 │  │  favicon.ico
 │  │  index.html
@@ -34,17 +36,18 @@ package.json已经限定好版本
 │  │  
 │  ├─static
 │  │  ├─css
-│  │  │      main.b74a6baa.css
+│  │  │      main.cd5652e3.css
 │  │  │      
 │  │  ├─js
-│  │  │      main.4aebfc49.js
+│  │  │      main.0e24866d.js
 │  │  │      
 │  │  └─media
 │  │          logo.5d5d9eef.svg
 │  │          
 │  └─test
-│      └─mock  
+│      └─mock
 │              chartData.json
+│              registerData.json
 │              tableData.json
 │              
 ├─config  //webpack配置
@@ -59,8 +62,6 @@ package.json已经限定好版本
 │          cssTransform.js
 │          fileTransform.js
 │          
-├
-│                  
 ├─public   //静态公共资源
 │  │  favicon.ico
 │  │  index.html
@@ -69,6 +70,7 @@ package.json已经限定好版本
 │  └─test
 │      └─mock   //测试数据
 │              chartData.json
+│              registerData.json
 │              tableData.json
 │              
 ├─scripts   //npm脚本
@@ -77,56 +79,70 @@ package.json已经限定好版本
 │      start.js
 │      test.js
 │      
-├─src     //工程源文件
-│  │  App.css
-│  │  App.js    //入口组件
-│  │  App.test.js
-│  │  index.css
-│  │  index.js   //入口文件
+├─src    //工程源文件夹
+│  │  Entry.js  //根组件
+│  │  index.js  //入口文件
 │  │  logo.svg
-│  │  normalize.css
-│  │  registerServiceWorker.js    //pwa缓存设置
+│  │  registerServiceWorker.js   //pwa缓存设置
 │  │  
-│  ├─api    //接口统一管理
-│  │      readme.txt
+│  ├─api   //接口统一管理
+│  │      api.js
+│  │      index.js
 │  │      
-│  ├─assets     //静态资源
-│  │  │  readme.txt
-│  │  │  
+│  ├─assets    //静态资源
 │  │  ├─images
 │  │  │      readme.txt
 │  │  │      
-│  │  └─less
-│  │      │  font.less
-│  │      │  
-│  │      └─lib
-│  │              readme.txt
-│  │              
-│  ├─components   //组件
-│  │  │  readme.txt
+│  │  ├─less
+│  │  │  │  hp_reset.less
+│  │  │  │  index.less
+│  │  │  │  
+│  │  │  └─lib
+│  │  │          normalize.css
+│  │  │          
+│  │  └─text
+│  │          global-text.js
+│  │          
+│  ├─components    //组件
+│  │  │  index.js
 │  │  │  
 │  │  └─layout
 │  │          Hbheader.js
 │  │          Hbheader.less
+│  │          Hbmenu.js
+│  │          Hbmenu.less
 │  │          
-│  ├─css    //全局css
-│  │      hp_reset.css
-│  │      
 │  ├─pages    //页面
+│  │  ├─App
+│  │  │      App.js
+│  │  │      App.less
+│  │  │      App.test.js
+│  │  │      
+│  │  ├─Common
+│  │  │      Common404.js
+│  │  │      
 │  │  ├─FlowAnalysis
 │  │  │      FlowAnalysis.js
 │  │  │      FlowAnalysis.less
 │  │  │      
 │  │  ├─IndexHome
-│  │  │      IndexHome.css
 │  │  │      IndexHome.js
+│  │  │      IndexHome.less
+│  │  │      
+│  │  ├─Login
+│  │  │      Login.js
+│  │  │      Login.less
+│  │  │      
+│  │  ├─Register
+│  │  │      Register.js
+│  │  │      Register.less
 │  │  │      
 │  │  └─ReportSheet
 │  │          chartOption.js
 │  │          ReportSheet.js
 │  │          ReportSheet.less
 │  │          
-│  ├─redux    //全局数据仓库
+│  ├─redux   //全局数据仓库
 │  │  │  action-creators.js
 │  │  │  create-store.js
 │  │  │  promise-middleware.js
@@ -136,12 +152,14 @@ package.json已经限定好版本
 │  │          readme.txt
 │  │          
 │  ├─router   //路由配置
-│  │      readme.txt
+│  │      config.js
+│  │      index.js
+│  │      menu.js
 │  │      
-│  └─utils   //公有函数或方法
-│          readme.txt
+│  └─utils    //公用工具函数
+│          index.js
 │          
-└─static   //其他一些静态资源
+└─static    //其他一些静态资源
     │  readme.txt
     │  
     ├─img
@@ -149,7 +167,6 @@ package.json已经限定好版本
     │      
     └─lib
             readme.txt
-            
 ```
 
 #### 其他
