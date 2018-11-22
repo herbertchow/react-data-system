@@ -30,14 +30,14 @@ class Hbmenu extends Component {
             >
                 <Menu
                     mode="inline"
-                    defaultSelectedKeys={[root[0].name]}
+                    defaultSelectedKeys={location.pathname?[location.pathname]:[]}
                     defaultOpenKeys={[...parentRoot.map(item => item.name)]}
                     style={{ height: "100%", borderRight: 0 }}
                 >
                     {root.map(rItem => {
                         if (!rItem.subMenu) {
                             return (
-                                <Menu.Item key={rItem.name}>
+                                <Menu.Item key={rItem.link?rItem.link:rItem.name}>
                                     {rItem.icon ? (
                                         <Icon type={rItem.icon} />
                                     ) : (
@@ -57,7 +57,7 @@ class Hbmenu extends Component {
                         } else if (!!rItem.subMenu) {
                             return (
                                 <SubMenu
-                                    key={rItem.name}
+                                    key={rItem.link?rItem.link:rItem.name}
                                     title={
                                         <span>
                                             {rItem.icon ? (
@@ -71,7 +71,7 @@ class Hbmenu extends Component {
                                 >
                                     {rItem.subMenu.map(rItem2 => {
                                         return (
-                                            <Menu.Item key={rItem2.name}>
+                                            <Menu.Item key={rItem2.link?rItem2.link:rItem2.name}>
                                                 {rItem2.link ? (
                                                     <span className="full-span">
                                                         <Link replace={location.pathname===rItem2.link} to={rItem2.link}>

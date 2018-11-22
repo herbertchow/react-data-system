@@ -69,7 +69,7 @@ const MENUCONFIG = {
             subMenu: [
                 {
                     name: GLOBALTEXT.MENU.COMPREHENSIVEREPORT,
-                    link: "/DataIndex",
+                    link: "/ReportSheet",
                 },
                 {
                     name: GLOBALTEXT.MENU.PRODUCTREPORT,
