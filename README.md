@@ -4,6 +4,9 @@
 1、react, redux, react-router, echarts, antd从零打造数据系统
 2、采用create-react-app并结合个人偏好建立项目
 
+#### 在线地址
+<a href="http://www.herbertc.tech/pro/react-data-system/index.html" target="_blank">http://www.herbertc.tech/pro/react-data-system/index.html</a>
+
 #### 安装教程
 package.json已经限定好版本
 
