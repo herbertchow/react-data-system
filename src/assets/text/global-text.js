@@ -14,21 +14,16 @@ const REPORTSHEET = {
     REPORTSHEET:'报表分析',
 }
 
-const COMPONENTS = {
-    INDEXHOME:'首页',
-    FLOWANALYSIS:'流量',
-    REPORTSHEET:'报表',
+const MENU = {
     REGISTER:'注册',
     LOGIN:'登录',
-}
-
-const MENU = {
     INDEXHOME:'首页',
+    REPORTSHEET:'报表',
     OVERVIEW:'概览',
     USER:'用户',
     SALES:'销售',
-    FLOWANALYSIS:'流量分析',
-    FLOW:'流量',
+    FLOW:'流量分析',
+    FLOWANALYSIS:'流量',
     FUNNEL:'漏斗',
     OTHERANALYSIS:'其他分析',
     EVENTSANALYSIS:'事件分析',
@@ -41,7 +36,6 @@ const MENU = {
 export default {
     GLOBAL,
     APP,
-    COMPONENTS,
     FLOWANALYSIS,
     REPORTSHEET,
     MENU,

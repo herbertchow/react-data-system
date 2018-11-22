@@ -15,6 +15,8 @@ import ReportSheet from '@appSrc/pages/ReportSheet/ReportSheet';
 import Login from '@appSrc/pages/Login/Login';
 import Register from '@appSrc/pages/Register/Register';
 import Common404 from '@appSrc/pages/Common/Common404';
+import Sale from '@appSrc/pages/IndexHome/Sale';
+import User from '@appSrc/pages/IndexHome/User';
 
 export default {
     Hbheader,
@@ -25,4 +27,6 @@ export default {
     Login,
     Register,
     Common404,
+    Sale,
+    User,
 }

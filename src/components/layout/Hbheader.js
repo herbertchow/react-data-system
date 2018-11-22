@@ -19,19 +19,21 @@ class Hbheader extends Component {
     }
 
     render() {
-        const navList = {
-            "/": "1",
-            "/FlowAnalysis": "2",
-            "/ReportSheet": "3"
-        };
+        
         let stateRoute = this.props.location.pathname;
-        const { usrName } = this.props;
+        const { usrName,nameSpace } = this.props;
 
         const content = (
             <Button type="default" onClick={this.setLogoutType}>
                 退出登录
             </Button>
         );
+        
+        const navList = {
+            "INDEXHOME": "1",
+            "FLOWANALYSIS": "2",
+            "REPORTSHEET": "3"
+        };
 
         return (
             <div className="hb-header">
@@ -44,21 +46,21 @@ class Hbheader extends Component {
                         className="top-menu"
                         theme="dark"
                         mode="horizontal"
-                        selectedKeys={[navList[stateRoute]]}
+                        selectedKeys={[navList[nameSpace]]}
                     >
                         <Menu.Item key="1">
                             <Link replace={stateRoute==="/"} to="/">
-                                {GLOBALTEXT.COMPONENTS.INDEXHOME}
+                                {GLOBALTEXT.MENU.INDEXHOME}
                             </Link>
                         </Menu.Item>
                         <Menu.Item key="2">
                             <Link replace={stateRoute==="/FlowAnalysis"} to="/FlowAnalysis">
-                                {GLOBALTEXT.COMPONENTS.FLOWANALYSIS}
+                                {GLOBALTEXT.MENU.FLOW}
                             </Link>
                         </Menu.Item>
                         <Menu.Item key="3">
                             <Link replace={stateRoute==="/ReportSheet"} to="/ReportSheet">
-                                {GLOBALTEXT.COMPONENTS.REPORTSHEET}
+                                {GLOBALTEXT.MENU.REPORTSHEET}
                             </Link>
                         </Menu.Item>
                     </Menu>

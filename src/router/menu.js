@@ -31,12 +31,12 @@ const MENUCONFIG = {
     ],
     FLOWANALYSIS: [
         {
-            name: GLOBALTEXT.MENU.FLOWANALYSIS,
+            name: GLOBALTEXT.MENU.FLOW,
             icon: "notification",
             link: null,
             subMenu: [
                 {
-                    name: GLOBALTEXT.MENU.FLOW,
+                    name: GLOBALTEXT.MENU.FLOWANALYSIS,
                     link: "/FlowAnalysis",
                 },
                 {

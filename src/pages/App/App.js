@@ -41,7 +41,7 @@ class App extends Component {
         const props = this.props;
         return (
             <div className="App">
-                <Hbheader />
+                <Hbheader {...props}/>
 
                 <Layout className="hb-main-layout">
                     <Hbmenu {...props}/>
