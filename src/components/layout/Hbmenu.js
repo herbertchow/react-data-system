@@ -15,7 +15,8 @@ const { Sider } = Layout;
 
 class Hbmenu extends Component {
     render() {
-        const { nameSpace } = this.props;
+        console.log(this.props)
+        const { nameSpace,location } = this.props;
 
         let root = MENUCONFIG[nameSpace];
         let parentRoot = root.filter(item => {
@@ -44,7 +45,7 @@ class Hbmenu extends Component {
                                     )}
                                     {rItem.link ? (
                                         <span className="full-span">
-                                            <Link to={rItem.link}>
+                                            <Link replace={location.pathname===rItem.link} to={rItem.link}>
                                                 {rItem.name}
                                             </Link>
                                         </span>
@@ -73,7 +74,7 @@ class Hbmenu extends Component {
                                             <Menu.Item key={rItem2.name}>
                                                 {rItem2.link ? (
                                                     <span className="full-span">
-                                                        <Link to={rItem2.link}>
+                                                        <Link replace={location.pathname===rItem2.link} to={rItem2.link}>
                                                             {rItem2.name}
                                                         </Link>
                                                     </span>

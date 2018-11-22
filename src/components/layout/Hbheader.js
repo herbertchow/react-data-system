@@ -47,17 +47,17 @@ class Hbheader extends Component {
                         selectedKeys={[navList[stateRoute]]}
                     >
                         <Menu.Item key="1">
-                            <Link to="/">
+                            <Link replace={stateRoute==="/"} to="/">
                                 {GLOBALTEXT.COMPONENTS.INDEXHOME}
                             </Link>
                         </Menu.Item>
                         <Menu.Item key="2">
-                            <Link to="/FlowAnalysis">
+                            <Link replace={stateRoute==="/FlowAnalysis"} to="/FlowAnalysis">
                                 {GLOBALTEXT.COMPONENTS.FLOWANALYSIS}
                             </Link>
                         </Menu.Item>
                         <Menu.Item key="3">
-                            <Link to="/ReportSheet">
+                            <Link replace={stateRoute==="/ReportSheet"} to="/ReportSheet">
                                 {GLOBALTEXT.COMPONENTS.REPORTSHEET}
                             </Link>
                         </Menu.Item>
