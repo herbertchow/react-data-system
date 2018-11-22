@@ -20,7 +20,6 @@ package.json已经限定好版本
 
 ```
 │  .gitignore
-│  ga.txt
 │  LICENSE
 │  package.json
 │  README.md
