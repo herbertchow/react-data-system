@@ -52,6 +52,30 @@ export default [
                 component: "User",
                 nameSpace:'INDEXHOME',
             },
+            {
+                route: "/Landed",
+                title: GLOBALTEXT.MENU.LANDINGANALYSIS,
+                component: "Landed",
+                nameSpace:'FLOWANALYSIS',
+            },
+            {
+                route: "/Funnel",
+                title: GLOBALTEXT.MENU.FUNNEL,
+                component: "Funnel",
+                nameSpace:'FLOWANALYSIS',
+            },
+            {
+                route: "/Event",
+                title: GLOBALTEXT.MENU.EVENTSANALYSIS,
+                component: "Event",
+                nameSpace:'FLOWANALYSIS',
+            },
+            {
+                route: "/Product",
+                title: GLOBALTEXT.MENU.PRODUCTREPORT,
+                component: "Product",
+                nameSpace:'REPORTSHEET',
+            }
         ]
     }
 ];

@@ -17,6 +17,10 @@ import Register from '@appSrc/pages/Register/Register';
 import Common404 from '@appSrc/pages/Common/Common404';
 import Sale from '@appSrc/pages/IndexHome/Sale';
 import User from '@appSrc/pages/IndexHome/User';
+import Event from '@appSrc/pages/FlowAnalysis/Event';
+import Funnel from '@appSrc/pages/FlowAnalysis/Funnel';
+import Landed from '@appSrc/pages/FlowAnalysis/Landed';
+import Product from '@appSrc/pages/ReportSheet/Product';
 
 export default {
     Hbheader,
@@ -29,4 +33,8 @@ export default {
     Common404,
     Sale,
     User,
+    Event,
+    Funnel,
+    Landed,
+    Product,
 }

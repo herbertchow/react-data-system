@@ -55,7 +55,7 @@ class Hbheader extends Component {
                         </Menu.Item>
                         <Menu.Item key="2">
                             <Link replace={stateRoute==="/FlowAnalysis"} to="/FlowAnalysis">
-                                {GLOBALTEXT.MENU.FLOW}
+                                {GLOBALTEXT.MENU.FLOWANALYSIS}
                             </Link>
                         </Menu.Item>
                         <Menu.Item key="3">
