@@ -4,6 +4,7 @@ import * as actionCreators from "../../redux/action-creators";
 import chartOption from "./chartOption";
 import echarts from "echarts";
 import { Button } from "antd";
+import {initChartsThemeMacarons} from "@appSrc/components/data_config/LineChartMacarons";
 import "./ReportSheet.less";
 import GLOBALTEXT from "@appSrc/assets/text/global-text";
 
@@ -15,9 +16,10 @@ class ReportSheet extends Component {
     }
 
     componentDidMount() {
+        initChartsThemeMacarons(echarts);
         this.setState({ showChart: true });
         const getEl = document.getElementById("chartDemo");
-        this.setState({ mychart: echarts.init(getEl) });
+        this.setState({ mychart: echarts.init(getEl,'macarons') });
         this.onTimeButtonClick();
     }
 
