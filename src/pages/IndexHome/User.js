@@ -27,7 +27,7 @@ class User extends Component {
   }
 
   componentDidMount() {
-    setInterval(() => {
+    this.si = setInterval(() => {
       this.setState({
         data: {
           datas: [
@@ -48,6 +48,10 @@ class User extends Component {
         }
       });
     },  1000);
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.si);
   }
 
   render() {
